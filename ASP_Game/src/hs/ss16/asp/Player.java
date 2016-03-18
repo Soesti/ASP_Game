@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 public class Player extends Sprite {
 	
-	Direction dir = Direction.Top;
+	Direction direction = Direction.Top;
 	int player_speed = 5;
 
 	public Player(int xPosition, int yPosition) {
@@ -16,17 +16,17 @@ public class Player extends Sprite {
 	}
 	
 	public void setDirection(Direction dir){
-		this.dir = dir;
+		this.direction = dir;
 	}
 	
 	@Override
 	public void calculatePosition(){
-		if(dir == Direction.Left){
+		if(direction == Direction.Left){
 			if(xPosition - player_speed > 0){
 				xPosition = xPosition - player_speed;
 			}
 		}
-		if(dir == Direction.Right){
+		if(direction == Direction.Right){
 			if(xPosition + player_speed < 930){
 				xPosition = xPosition + player_speed;
 			}
@@ -34,7 +34,7 @@ public class Player extends Sprite {
 	}
 	
 	public Direction getDirection(){
-		return dir;
+		return direction;
 	}
 
 }

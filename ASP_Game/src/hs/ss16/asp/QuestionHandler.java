@@ -9,8 +9,9 @@ public class QuestionHandler {
 		//read Questions from xml
 	}
 	
-	public List<Question> getQuestions(){
-		return this.questions;
+	public Question getQuestions(){
+		int randomNumber = (int)Math.random()*questions.size();
+		return questions.get(randomNumber);		
 	}
 	
 }

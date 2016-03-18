@@ -12,9 +12,13 @@ public class QuestenGUI extends JPanel {
 	
 	JLabel question, answer1, answer2, answer3, answer4;
 	
+	QuestionHandler questionHandler;
+	
 	public QuestenGUI(Board board){
 		setSize(G_Width, G_Height);
 		setLayout(new GridLayout(5,1));
+		
+		questionHandler = new QuestionHandler();
 		
 		question = new JLabel();
 		answer1 = new JLabel();
@@ -25,6 +29,9 @@ public class QuestenGUI extends JPanel {
 	}
 	
 	public void createNewQuestion(){
+		Question question = questionHandler.getQuestions();
+		
+		
 		setVisible(true);
 	}
 
