@@ -10,7 +10,7 @@ public class QuestenGUI extends JPanel {
 	static final int G_Width = 600;
 	static final int G_Height = 300;
 	
-	JLabel question, answer1, answer2, answer3, answer4;
+	JLabel questionLabel, answer1Label, answer2Label, answer3Label, answer4Label;
 	
 	QuestionHandler questionHandler;
 	
@@ -20,18 +20,18 @@ public class QuestenGUI extends JPanel {
 		
 		questionHandler = new QuestionHandler();
 		
-		question = new JLabel();
-		answer1 = new JLabel();
-		answer2 = new JLabel();
-		answer3 = new JLabel();
-		answer4 = new JLabel();
+		questionLabel = new JLabel();
+		answer1Label = new JLabel();
+		answer2Label = new JLabel();
+		answer3Label = new JLabel();
+		answer4Label = new JLabel();
 		
 	}
 	
 	public void createNewQuestion(){
-		Question question = questionHandler.getQuestions();
+		Question newQuestion = questionHandler.getQuestions();
 		
-		
+		questionLabel.setText(newQuestion.getQuestion());
 		setVisible(true);
 	}
 

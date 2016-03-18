@@ -6,8 +6,8 @@ import javax.swing.ImageIcon;
 
 public class Player extends Sprite {
 	
-	Direction direction = Direction.Top;
-	int player_speed = 5;
+	private Direction direction = Direction.Top;
+	private int player_speed = 5;
 
 	public Player(int xPosition, int yPosition) {
 		super(xPosition, yPosition);
