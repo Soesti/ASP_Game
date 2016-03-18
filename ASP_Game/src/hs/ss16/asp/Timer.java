@@ -17,8 +17,14 @@ public class Timer extends Thread{
 	@Override
 	public void run(){
 		while(true){
+			
 			play.calculatePosition();
+			for (Sprite sprite : sprites) {
+				 sprite.calculatePosition();
+			 }
 			board.repaint();
+			
+			
 			try {
 				sleep(10);
 			} catch (InterruptedException e) {

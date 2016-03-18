@@ -8,6 +8,7 @@ public abstract class Sprite {
     protected int yPosition;
     protected boolean visible;
     protected Image image;
+    protected int speed = 0;
 
     
     public Sprite(int xPosition, int yPosition) {
@@ -31,6 +32,14 @@ public abstract class Sprite {
 
     public boolean isVisible() {
         return visible;
+    }
+    
+    public void setSpeed(int speed){
+    	this.speed = speed;
+    }
+    
+    public int getSpeed(){
+    	return speed;
     }
 
     public void setVisible(boolean visible) {
