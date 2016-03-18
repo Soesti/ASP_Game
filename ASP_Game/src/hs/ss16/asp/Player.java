@@ -22,11 +22,19 @@ public class Player extends Sprite {
 	@Override
 	public void calculatePosition(){
 		if(dir == Direction.Left){
-			xPosition = xPosition - player_speed;
+			if(xPosition - player_speed > 0){
+				xPosition = xPosition - player_speed;
+			}
 		}
 		if(dir == Direction.Right){
-			xPosition = xPosition + player_speed;
+			if(xPosition + player_speed < 930){
+				xPosition = xPosition + player_speed;
+			}
 		}
+	}
+	
+	public Direction getDirection(){
+		return dir;
 	}
 
 }

@@ -19,15 +19,21 @@ public class KeyListenerPlayer implements KeyListener {
 		else if(e.getKeyChar() == 'd' ||e.getKeyCode() == KeyEvent.VK_RIGHT){
 			play.setDirection(Direction.Right);
 		}
-		else{
-			play.setDirection(Direction.Top);
-		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		play.setDirection(Direction.Top);
+		if(e.getKeyChar() == 'a' || e.getKeyCode() == KeyEvent.VK_LEFT){
+			if(play.getDirection() != Direction.Right){
+				play.setDirection(Direction.Top);
+			}
+		}
+		else if(e.getKeyChar() == 'd' ||e.getKeyCode() == KeyEvent.VK_RIGHT){
+			if(play.getDirection() != Direction.Left){
+				play.setDirection(Direction.Top);
+			}
+		}
 		
 	}
 
