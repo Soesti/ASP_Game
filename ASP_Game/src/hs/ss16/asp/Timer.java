@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Timer extends Thread{
 	
-	Player play;
+	Player player;
 	ArrayList<Sprite> sprites;
 	Board board;
 	
-	public Timer(Player play, ArrayList<Sprite> sprites, Board board){
-		this.play = play;
+	public Timer(Player player, ArrayList<Sprite> sprites, Board board){
+		this.player = player;
 		this.sprites = sprites;
 		this.board = board;
 	}
@@ -17,8 +17,14 @@ public class Timer extends Thread{
 	@Override
 	public void run(){
 		while(true){
-			play.calculatePosition();
+			
+			player.calculatePosition();
+			for (Sprite sprite : sprites) {
+				 sprite.calculatePosition();
+			 }
 			board.repaint();
+			
+			
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {

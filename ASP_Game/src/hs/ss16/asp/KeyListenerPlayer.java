@@ -5,29 +5,35 @@ import java.awt.event.KeyListener;
 
 public class KeyListenerPlayer implements KeyListener {
 	
-	Player play;
+	Player player;
 	
-	public KeyListenerPlayer(Player play) {
-		this.play = play;
+	public KeyListenerPlayer(Player player) {
+		this.player = player;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyChar() == 'a' || e.getKeyCode() == KeyEvent.VK_LEFT){
-			play.setDirection(Direction.Left);
+			player.setDirection(Direction.Left);
 		}
 		else if(e.getKeyChar() == 'd' ||e.getKeyCode() == KeyEvent.VK_RIGHT){
-			play.setDirection(Direction.Right);
-		}
-		else{
-			play.setDirection(Direction.Top);
+			player.setDirection(Direction.Right);
 		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		play.setDirection(Direction.Top);
+		if(e.getKeyChar() == 'a' || e.getKeyCode() == KeyEvent.VK_LEFT){
+			if(player.getDirection() != Direction.Right){
+				player.setDirection(Direction.Top);
+			}
+		}
+		else if(e.getKeyChar() == 'd' ||e.getKeyCode() == KeyEvent.VK_RIGHT){
+			if(player.getDirection() != Direction.Left){
+				player.setDirection(Direction.Top);
+			}
+		}
 		
 	}
 
