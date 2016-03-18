@@ -1,6 +1,5 @@
 package hs.ss16.asp;
 
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 

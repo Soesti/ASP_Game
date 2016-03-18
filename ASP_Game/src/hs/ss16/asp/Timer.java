@@ -7,6 +7,7 @@ public class Timer extends Thread{
 	Player player;
 	ArrayList<Sprite> sprites;
 	Board board;
+	private int ticks =400;
 	
 	public Timer(Player player, ArrayList<Sprite> sprites, Board board){
 		this.player = player;
@@ -17,6 +18,11 @@ public class Timer extends Thread{
 	@Override
 	public void run(){
 		while(true){
+			if(ticks == 0){
+				
+				board.createObstacle();
+				ticks = 400;
+			}
 			
 			player.calculatePosition();
 			for (Sprite sprite : sprites) {
@@ -25,8 +31,10 @@ public class Timer extends Thread{
 			board.repaint();
 			
 			
+			ticks--;
+			
 			try {
-				sleep(100);
+				sleep(10);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -3,6 +3,7 @@ package hs.ss16.asp;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -33,8 +34,10 @@ public class Board extends JPanel {
     	 this.addKeyListener(new KeyListenerPlayer(player));
     	 
     	 Timer timer  = new Timer(player, sprites, this);
-    	 CollisionThread colision = new CollisionThread(this);
     	 timer.start();
+    	 
+    	 CollisionThread colision = new CollisionThread(this);
+    	 colision.start();
     	 
     	 setFocusable(true);
     	 setVisible(true);
@@ -59,6 +62,15 @@ public class Board extends JPanel {
             g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite)sprite).getXPosition(),
             		((Sprite)sprite).getYPosition(), this);
         }
+    }
+    
+    public void createObstacle(){
+    	int random  = (int)(Math.random()* 700);
+    	System.out.println(random);
+    	Rock rock = new Rock(random,0);
+    	rock.setSpeed(3);
+    	
+    	sprites.add(rock);
     }
 
     
