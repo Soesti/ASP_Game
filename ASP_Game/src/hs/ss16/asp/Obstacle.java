@@ -1,6 +1,6 @@
 package hs.ss16.asp;
 
-public class Obstacle extends Sprite {
+public abstract class Obstacle extends Sprite {
 	
 	private int speed = 0;
 
