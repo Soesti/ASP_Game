@@ -13,10 +13,10 @@ public class KeyListenerPlayer implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyChar() == 'a' || e.getKeyChar() == KeyEvent.VK_RIGHT){
+		if(e.getKeyChar() == 'a' || e.getKeyCode() == KeyEvent.VK_LEFT){
 			play.setDirection(Direction.Left);
 		}
-		else if(e.getKeyChar() == 'd'){
+		else if(e.getKeyChar() == 'd' ||e.getKeyCode() == KeyEvent.VK_RIGHT){
 			play.setDirection(Direction.Right);
 		}
 		else{
