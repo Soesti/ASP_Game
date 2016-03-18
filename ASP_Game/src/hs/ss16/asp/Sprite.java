@@ -36,4 +36,6 @@ public abstract class Sprite {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
+    
+    public abstract void calculatePosition();
 }
