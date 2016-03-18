@@ -19,13 +19,21 @@ public class Board extends JPanel {
     Player player;
     ArrayList<Sprite> sprites;
     
+    boolean run;
+    
+    int lengthUp = 2;
+    int lengthDown = 2;
+    int width = 2;
+    
     public Board(){
+    	 run = true;
     	 sprites = new ArrayList<Sprite>();
     	 
     	 player = new Player(500,700);
     	 this.addKeyListener(new KeyListenerPlayer(player));
     	 
     	 Timer timer  = new Timer(player, sprites, this);
+    	 CollisionThread colision = new CollisionThread(this);
     	 timer.start();
     	 
     	 setFocusable(true);
@@ -53,5 +61,16 @@ public class Board extends JPanel {
         }
     }
 
-
+    
+    public boolean checkCollisions() {
+    	for(int i = 0; i < sprites.size(); i++) {
+    		if(player.getXPosition() <= ((sprites.get(i)).getXPosition() + width) || (player.getXPosition() + width) >= (sprites.get(i)).getXPosition()) {
+    			if((player.getYPosition() + lengthUp) >= (sprites.get(i).getYPosition() - width)) {
+    				run = false;
+    				return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
 }
