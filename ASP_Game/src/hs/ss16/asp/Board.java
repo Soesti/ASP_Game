@@ -21,8 +21,14 @@ public class Board extends JPanel {
     
     public Board(){
     	 sprites = new ArrayList<Sprite>();
-    	 player = new Player(500,700);
     	 
+    	 player = new Player(500,700);
+    	 this.addKeyListener(new KeyListenerPlayer(player));
+    	 
+    	 Timer timer  = new Timer(player, sprites, this);
+    	 timer.start();
+    	 
+    	 setFocusable(true);
     	 setVisible(true);
     }
    
