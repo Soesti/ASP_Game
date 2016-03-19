@@ -40,6 +40,8 @@ public class Timer extends Thread{
 				e.printStackTrace();
 			}
 		}
+		
+		board.repaint();
 	}
 	
 	public void endLoop(){

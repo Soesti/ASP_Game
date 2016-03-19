@@ -113,11 +113,10 @@ public class Board extends JPanel {
 					if(sprites.get(i).getClass() == Rock.class){
 					
 						if(player.getCurrentLives() == 1){
+							player.decrementLive();
+							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
 							//Stop gameloop
 							timer.endLoop();
-							sprites.remove(i);
-							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
-							i--;
 							return false;
 						}
 						else{
