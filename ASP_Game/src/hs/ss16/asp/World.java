@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public class World extends JFrame {
 	 
 	/**
-	 * 
+	 * b
 	 */
 	private static final long serialVersionUID = 1L;
 
