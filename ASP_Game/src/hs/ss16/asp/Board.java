@@ -21,14 +21,17 @@ public class Board extends JPanel {
 	
 	private int collectedCarrots;
 
-	Player player;
-	ArrayList<Sprite> sprites;
+	private Player player;
+	private ArrayList<Sprite> sprites;
+	
+	private Timer timer;
+	private CollisionThread colisionThread;
 
 	boolean run;
 
-	int lengthUp = 2;
-	int lengthDown = 2;
-	int width = 2;
+	int lengthUp = 20;
+	int lengthDown = 20;
+	int width = 20;
 
 	public Board() {
 
@@ -42,11 +45,11 @@ public class Board extends JPanel {
 		player = new Player(500, 700);
 		this.addKeyListener(new KeyListenerPlayer(player));
 
-		Timer timer = new Timer(player, sprites, this);
+		timer = new Timer(player, sprites, this);
 		timer.start();
 
-		CollisionThread colision = new CollisionThread(this);
-		colision.start();
+		colisionThread = new CollisionThread(this);
+		colisionThread.start();
 
 	}
 
@@ -81,11 +84,13 @@ public class Board extends JPanel {
 
 	public boolean checkCollisions() {
 		for (int i = 0; i < sprites.size(); i++) {
-			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + width))
-					|| ((player.getXPosition() + width) >= (sprites.get(i)).getXPosition())) {
-				if ((player.getYPosition() + lengthUp) <= (sprites.get(i).getYPosition() - lengthDown)) {
+			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + width) && player.getXPosition()+ width >= sprites.get(i).getXPosition())
+					|| ((player.getXPosition() + width) >= (sprites.get(i)).getXPosition()) && player.getXPosition() <= sprites.get(i).getXPosition()+width) {
+				if ((player.getYPosition() - lengthUp) <= (sprites.get(i).getYPosition() + lengthDown) && (player.getYPosition() + lengthDown > sprites.get(i).getYPosition()-lengthUp)) {
 					run = false;
-					System.out.println("Treffer");
+					
+					//Stop gameloop
+					timer.endLoop();
 					return false;
 				}
 			}
