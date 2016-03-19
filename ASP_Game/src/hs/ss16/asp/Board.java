@@ -74,19 +74,34 @@ public class Board extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
 
-		for (Object sprite : sprites) {
-			g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite) sprite).getXPosition(),
-					((Sprite) sprite).getYPosition(), this);
+		if(!sprites.isEmpty()){
+			for (Object sprite : sprites) {
+				g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite) sprite).getXPosition(),
+						((Sprite) sprite).getYPosition(), this);
+			}
 		}
+		
+		collectedCarrotsLabel.setText("" + collectedCarrots);
 	}
 
 	public void createObstacle() {
-		int random = (int) (Math.random() * 700);
-		System.out.println(random);
-		Rock rock = new Rock(random, 0);
-		rock.setSpeed(obstracleSpeed);
+		int randomPosition = (int) (Math.random() * 700);
+		int randomObstacle = (int) (Math.random() * 2)+1;
+		
+		System.out.println(randomObstacle);
+		
+		if(randomObstacle == 1){
+			Rock rock = new Rock(randomPosition, 0);
+			rock.setSpeed(obstracleSpeed);
 
-		sprites.add(rock);
+			sprites.add(rock);
+		}
+		if(randomObstacle == 2){
+			Carrot carrot = new Carrot(randomPosition, 0);
+			carrot.setSpeed(obstracleSpeed);
+			
+			sprites.add(carrot);
+		}
 	}
 
 	public boolean checkCollisions() {
@@ -101,6 +116,7 @@ public class Board extends JPanel {
 							//Stop gameloop
 							timer.endLoop();
 							sprites.remove(i);
+							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
 							i--;
 							return false;
 						}
@@ -114,6 +130,8 @@ public class Board extends JPanel {
 					}
 					if(sprites.get(i).getClass() == Carrot.class){
 						collectedCarrots++;
+						sprites.remove(i);
+						i--;
 					}
 				}
 			}
