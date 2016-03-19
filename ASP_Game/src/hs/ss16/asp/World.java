@@ -17,6 +17,7 @@ public class World extends JFrame {
 		
 		add(new Board());
 		setSize(1000, 800);
+		setResizable(false);
 		setTitle("BunnyWars");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
