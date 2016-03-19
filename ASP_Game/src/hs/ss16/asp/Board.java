@@ -46,7 +46,7 @@ public class Board extends JPanel {
 		run = true;
 		sprites = new ArrayList<Sprite>();
 
-		player = new Player(500, 700);
+		player = new Player(500, 660);
 		this.addKeyListener(new KeyListenerPlayer(player));
 
 		timer = new Timer(player, sprites, this);
@@ -130,8 +130,8 @@ public class Board extends JPanel {
 		setLayout(null);
 		
 		JLabel carrots = new JLabel("");
-		carrots.setIcon(new ImageIcon("img/PixelCarrot.png"));
-		carrots.setBounds(960, 11, 30, 30);
+		carrots.setIcon(new ImageIcon("img/carrot.png"));
+		carrots.setBounds(960, 11, 27, 75);
 		add(carrots);
 
 		collectedCarrotsLabel = new JLabel("0");

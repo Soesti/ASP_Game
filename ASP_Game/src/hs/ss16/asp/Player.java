@@ -28,7 +28,7 @@ public class Player extends Sprite {
 			}
 		}
 		if(direction == Direction.Right){
-			if(xPosition + speed < 930){
+			if(xPosition + speed < 908){
 				xPosition = xPosition + speed;
 			}
 		}

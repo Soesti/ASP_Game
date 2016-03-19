@@ -35,7 +35,7 @@ public class Timer extends Thread{
 			ticks--;
 			
 			try {
-				sleep(16);
+				sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
