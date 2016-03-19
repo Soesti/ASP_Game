@@ -9,5 +9,8 @@ public class Carrot extends Obstacle {
 		
 		ImageIcon ii = new ImageIcon("img/carrot.png");
 		this.image = ii.getImage();
+		
+		width = 27;
+		height = 75;
 	}
 }

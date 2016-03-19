@@ -9,5 +9,8 @@ public class Rock extends Obstacle {
 		
 		ImageIcon ii = new ImageIcon("img/rock.png");
 		this.image = ii.getImage();
+		
+		height = 96;
+		width = 156;
 	}
 }

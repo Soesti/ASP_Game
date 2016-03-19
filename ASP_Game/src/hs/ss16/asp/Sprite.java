@@ -9,6 +9,8 @@ public abstract class Sprite {
     protected boolean visible;
     protected Image image;
     protected int speed = 0;
+    protected int width;
+    protected int height;
 
     
     public Sprite(int xPosition, int yPosition) {
@@ -40,6 +42,14 @@ public abstract class Sprite {
     
     public int getSpeed(){
     	return speed;
+    }
+    
+    public int getHeight(){
+    	return height;
+    }
+    
+    public int getWidth(){
+    	return width;
     }
 
     public void setVisible(boolean visible) {

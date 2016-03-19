@@ -28,9 +28,7 @@ public class Board extends JPanel {
 	private CollisionThread colisionThread;
 
 	boolean run;
-
-	int lengthUp = 20;
-	int lengthDown = 20;
+	
 	int width = 20;
 	int obstracleSpeed = 3;
 	
@@ -93,9 +91,9 @@ public class Board extends JPanel {
 
 	public boolean checkCollisions() {
 		for (int i = 0; i < sprites.size(); i++) {
-			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + width) && player.getXPosition()+ width >= sprites.get(i).getXPosition())
-					|| ((player.getXPosition() + width) >= (sprites.get(i)).getXPosition()) && player.getXPosition() <= sprites.get(i).getXPosition()+width) {
-				if ((player.getYPosition() - lengthUp) <= (sprites.get(i).getYPosition() + lengthDown) && (player.getYPosition() + lengthDown > sprites.get(i).getYPosition()-lengthUp)) {
+			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + sprites.get(i).getWidth()) && player.getXPosition()+ player.getWidth() >= sprites.get(i).getXPosition())
+					|| ((player.getXPosition() + player.width) >= (sprites.get(i)).getXPosition()) && player.getXPosition() <= sprites.get(i).getXPosition()+ sprites.get(i).getWidth()) {
+				if ((player.getYPosition()) <= (sprites.get(i).getYPosition() + sprites.get(i).getHeight()) && (player.getYPosition() + player.getHeight() > sprites.get(i).getYPosition())) {
 					
 					if(sprites.get(i).getClass() == Rock.class){
 					

@@ -14,6 +14,8 @@ public class Player extends Sprite {
 		image = ii.getImage();
 		speed = 5;
 		lives = 3;
+		height = 92;
+		width = 92;
 	}
 	
 	public void setDirection(Direction dir){
