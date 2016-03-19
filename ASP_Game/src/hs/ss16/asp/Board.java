@@ -32,6 +32,9 @@ public class Board extends JPanel {
 	int lengthUp = 20;
 	int lengthDown = 20;
 	int width = 20;
+	int obstracleSpeed = 3;
+	
+	JLabel life1, life2, life3, collectedCarrotsLabel;
 
 	public Board() {
 
@@ -77,7 +80,7 @@ public class Board extends JPanel {
 		int random = (int) (Math.random() * 700);
 		System.out.println(random);
 		Rock rock = new Rock(random, 0);
-		rock.setSpeed(3);
+		rock.setSpeed(obstracleSpeed);
 
 		sprites.add(rock);
 	}
@@ -109,21 +112,21 @@ public class Board extends JPanel {
 		carrots.setBounds(960, 11, 30, 30);
 		add(carrots);
 
-		JLabel collectedCarrots = new JLabel("0");
-		collectedCarrots.setBounds(927, 11, 30, 30);
-		add(collectedCarrots);
+		collectedCarrotsLabel = new JLabel("0");
+		collectedCarrotsLabel.setBounds(927, 11, 30, 30);
+		add(collectedCarrotsLabel);
 
-		JLabel life1 = new JLabel("");
+		life1 = new JLabel("");
 		life1.setIcon(new ImageIcon("img/pixelheart.png"));
 		life1.setBounds(10, 11, 30, 30);
 		add(life1);
 
-		JLabel life2 = new JLabel("");
+		life2 = new JLabel("");
 		life2.setIcon(new ImageIcon("img/pixelheart.png"));
 		life2.setBounds(50, 11, 30, 30);
 		add(life2);
 
-		JLabel life3 = new JLabel("");
+		life3 = new JLabel("");
 		life3.setIcon(new ImageIcon("img/pixelheart.png"));
 		life3.setBounds(90, 11, 30, 30);
 		add(life3);
