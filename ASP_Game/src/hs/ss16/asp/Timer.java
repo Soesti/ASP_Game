@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Timer extends Thread{
 	
-	Player player;
-	ArrayList<Sprite> sprites;
-	Board board;
+	private Player player;
+	private ArrayList<Sprite> sprites;
+	private Board board;
 	private int ticks =400;
+	private boolean run = true;
 	
 	public Timer(Player player, ArrayList<Sprite> sprites, Board board){
 		this.player = player;
@@ -17,7 +18,7 @@ public class Timer extends Thread{
 	
 	@Override
 	public void run(){
-		while(true){
+		while(run){
 			if(ticks == 0){
 				
 				board.createObstacle();
@@ -34,12 +35,15 @@ public class Timer extends Thread{
 			ticks--;
 			
 			try {
-				sleep(10);
+				sleep(16);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void endLoop(){
+		run = false;
 	}
 
 }
