@@ -35,6 +35,7 @@ public class Board extends JPanel {
 	int obstracleSpeed = 3;
 	
 	JLabel life1, life2, life3, collectedCarrotsLabel;
+	JLabel[] lives;
 
 	public Board() {
 
@@ -53,6 +54,11 @@ public class Board extends JPanel {
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
+		
+		lives = new JLabel[3];
+		lives[0] = life1;
+		lives[1] = life2;
+		lives[2] = life3;
 
 	}
 
@@ -90,11 +96,27 @@ public class Board extends JPanel {
 			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + width) && player.getXPosition()+ width >= sprites.get(i).getXPosition())
 					|| ((player.getXPosition() + width) >= (sprites.get(i)).getXPosition()) && player.getXPosition() <= sprites.get(i).getXPosition()+width) {
 				if ((player.getYPosition() - lengthUp) <= (sprites.get(i).getYPosition() + lengthDown) && (player.getYPosition() + lengthDown > sprites.get(i).getYPosition()-lengthUp)) {
-					run = false;
 					
-					//Stop gameloop
-					timer.endLoop();
-					return false;
+					if(sprites.get(i).getClass() == Rock.class){
+					
+						if(player.getCurrentLives() == 1){
+							//Stop gameloop
+							timer.endLoop();
+							sprites.remove(i);
+							i--;
+							return false;
+						}
+						else{
+							player.decrementLive();
+							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
+							sprites.remove(i);
+							i--;
+							return true;
+						}
+					}
+					if(sprites.get(i).getClass() == Carrot.class){
+						collectedCarrots++;
+					}
 				}
 			}
 		}
@@ -117,18 +139,18 @@ public class Board extends JPanel {
 		add(collectedCarrotsLabel);
 
 		life1 = new JLabel("");
-		life1.setIcon(new ImageIcon("img/pixelheart.png"));
-		life1.setBounds(10, 11, 30, 30);
+		life1.setIcon(new ImageIcon("img/life_full.png"));
+		life1.setBounds(10, 11, 75, 65);
 		add(life1);
 
 		life2 = new JLabel("");
-		life2.setIcon(new ImageIcon("img/pixelheart.png"));
-		life2.setBounds(50, 11, 30, 30);
+		life2.setIcon(new ImageIcon("img/life_full.png"));
+		life2.setBounds(95, 11, 75, 65);
 		add(life2);
 
 		life3 = new JLabel("");
-		life3.setIcon(new ImageIcon("img/pixelheart.png"));
-		life3.setBounds(90, 11, 30, 30);
+		life3.setIcon(new ImageIcon("img/life_full.png"));
+		life3.setBounds(180, 11, 75, 65);
 		add(life3);
 	}
 }
