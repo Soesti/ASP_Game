@@ -81,18 +81,17 @@ public class Board extends JPanel {
 
 	public boolean checkCollisions() {
 		for (int i = 0; i < sprites.size(); i++) {
-			if (player.getXPosition() <= ((sprites.get(i)).getXPosition() + width)
-					|| (player.getXPosition() + width) >= (sprites.get(i)).getXPosition()) {
-				if ((player.getYPosition() + lengthUp) >= (sprites.get(i).getYPosition() - width)) {
+			if ((player.getXPosition() <= ((sprites.get(i)).getXPosition() + width))
+					|| ((player.getXPosition() + width) >= (sprites.get(i)).getXPosition())) {
+				if ((player.getYPosition() + lengthUp) <= (sprites.get(i).getYPosition() - lengthDown)) {
 					run = false;
+					System.out.println("Treffer");
 					return false;
 				}
 			}
 		}
 		return true;
 	}
-	
-	
 
 	private void initUI() {
 		setSize(1000, 800);
