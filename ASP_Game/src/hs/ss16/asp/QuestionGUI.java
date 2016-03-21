@@ -30,13 +30,14 @@ public class QuestionGUI extends JPanel {
 	}
 	
 	public void createNewQuestion(){
-		Question newQuestion = questionHandler.getQuestion();
+		Question randomQuestion = questionHandler.getRandomQuestion();
 		
-		questionLabel.setText(newQuestion.getQuestion());
-		answer1Label.setText(newQuestion.getAnswers().get(0).getAnswerString());
-		answer1Label.setText(newQuestion.getAnswers().get(1).getAnswerString());
-		answer1Label.setText(newQuestion.getAnswers().get(2).getAnswerString());
-		answer1Label.setText(newQuestion.getAnswers().get(3).getAnswerString());
+		questionLabel.setText(randomQuestion.getQuestion());
+
+		answer1Label.setText(randomQuestion.getAnswers().get(0).getAnswerString());
+		answer2Label.setText(randomQuestion.getAnswers().get(1).getAnswerString());
+		answer3Label.setText(randomQuestion.getAnswers().get(2).getAnswerString());
+		answer4Label.setText(randomQuestion.getAnswers().get(3).getAnswerString());
 		
 		setVisible(true);
 	}

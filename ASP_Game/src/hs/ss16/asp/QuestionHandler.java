@@ -18,7 +18,7 @@ public class QuestionHandler {
 	public QuestionHandler() {
 	}
 
-	public Question getQuestion() {
+	public Question getRandomQuestion() {
 		if (this.questions == null) {
 			getQuestionsFromXML();
 		}
