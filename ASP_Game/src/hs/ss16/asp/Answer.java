@@ -14,7 +14,7 @@ public class Answer {
 		return this.right;
 	}
 	
-	public String getAnswer(){
+	public String getAnswerString(){
 		return this.answer;
 	}
 
