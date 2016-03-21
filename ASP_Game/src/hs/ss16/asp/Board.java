@@ -168,7 +168,7 @@ public class Board extends JPanel {
 
 		collectedCarrotsLabel = new JLabel("0");
 		collectedCarrotsLabel.setFont(new Font(collectedCarrotsLabel.getFont().getName(), Font.PLAIN, 40));
-		collectedCarrotsLabel.setBounds(927, 30, 30, 30);
+		collectedCarrotsLabel.setBounds(907, 30, 100, 30);
 		add(collectedCarrotsLabel);
 
 		life1 = new JLabel("");
