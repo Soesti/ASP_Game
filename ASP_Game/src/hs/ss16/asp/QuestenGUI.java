@@ -32,6 +32,11 @@ public class QuestenGUI extends JPanel {
 		Question newQuestion = questionHandler.getQuestions();
 		
 		questionLabel.setText(newQuestion.getQuestion());
+		answer1Label.setText(newQuestion.getAnswers().get(0).getAnswerString());
+		answer1Label.setText(newQuestion.getAnswers().get(1).getAnswerString());
+		answer1Label.setText(newQuestion.getAnswers().get(2).getAnswerString());
+		answer1Label.setText(newQuestion.getAnswers().get(3).getAnswerString());
+		
 		setVisible(true);
 	}
 
