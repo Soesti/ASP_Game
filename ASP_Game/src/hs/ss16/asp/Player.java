@@ -70,5 +70,9 @@ public class Player extends Sprite {
 	public void decrementLive(){
 		lives--;
 	}
+	
+	public void setLives(int lives){
+		this.lives = lives;
+	}
 
 }

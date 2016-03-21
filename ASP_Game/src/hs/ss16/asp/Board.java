@@ -1,13 +1,15 @@
 package hs.ss16.asp;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,6 +24,7 @@ public class Board extends JPanel {
 	private int collectedCarrots;
 
 	private Player player;
+	private KeyListenerPlayer keyListenerPlayer;
 	private ArrayList<Sprite> sprites;
 	
 	private Timer timer;
@@ -33,6 +36,7 @@ public class Board extends JPanel {
 	int obstracleSpeed = 3;
 	
 	JLabel life1, life2, life3, collectedCarrotsLabel;
+	JButton newGameButton;
 	JLabel[] lives;
 
 	public Board() {
@@ -45,7 +49,8 @@ public class Board extends JPanel {
 		sprites = new ArrayList<Sprite>();
 
 		player = new Player(500, 660);
-		this.addKeyListener(new KeyListenerPlayer(player));
+		keyListenerPlayer = new KeyListenerPlayer(player);
+		this.addKeyListener(keyListenerPlayer);
 
 		timer = new Timer(player, sprites, this);
 		timer.start();
@@ -117,6 +122,18 @@ public class Board extends JPanel {
 							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
 							//Stop gameloop
 							timer.endLoop();
+							
+							newGameButton = new JButton("Neues Spiel");
+							newGameButton.setBounds(425, 400, 150, 40);
+							newGameButton.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									newGame();
+								}
+							});
+							this.add(newGameButton);
+							
 							return false;
 						}
 						else{
@@ -150,7 +167,8 @@ public class Board extends JPanel {
 		add(carrots);
 
 		collectedCarrotsLabel = new JLabel("0");
-		collectedCarrotsLabel.setBounds(927, 11, 30, 30);
+		collectedCarrotsLabel.setFont(new Font(collectedCarrotsLabel.getFont().getName(), Font.PLAIN, 40));
+		collectedCarrotsLabel.setBounds(927, 30, 30, 30);
 		add(collectedCarrotsLabel);
 
 		life1 = new JLabel("");
@@ -167,5 +185,28 @@ public class Board extends JPanel {
 		life3.setIcon(new ImageIcon("img/life_full.png"));
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
+	}
+	
+	public void newGame(){
+		collectedCarrots = 0;
+		this.remove(newGameButton);
+		
+		life1.setIcon(new ImageIcon("img/life_full.png"));
+		life2.setIcon(new ImageIcon("img/life_full.png"));
+		life3.setIcon(new ImageIcon("img/life_full.png"));
+		
+		run = true;
+		sprites = new ArrayList<Sprite>();
+
+		this.removeKeyListener(keyListenerPlayer);
+		player = new Player(500, 660);
+		keyListenerPlayer = new KeyListenerPlayer(player);
+		this.addKeyListener(keyListenerPlayer);
+
+		timer = new Timer(player, sprites, this);
+		timer.start();
+
+		colisionThread = new CollisionThread(this);
+		colisionThread.start();
 	}
 }
