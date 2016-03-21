@@ -1,5 +1,8 @@
 package hs.ss16.asp;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 public class World extends JFrame {
@@ -8,6 +11,7 @@ public class World extends JFrame {
 	 * b
 	 */
 	private static final long serialVersionUID = 1L;
+	//private final Dimension screenSize;
 
 	public World(){		
 		initUI();	
@@ -15,8 +19,9 @@ public class World extends JFrame {
 	
 	private void initUI(){
 		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		add(new Board());
-		setSize(1000, 800);
+		setSize(1000, screenSize.height);
 		setResizable(false);
 		setTitle("BunnyWars");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
