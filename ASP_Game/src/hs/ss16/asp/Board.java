@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 
 	private final int B_WIDTH = 1000;
-	private final int B_HEIGHT = 800;
+	private final int B_HEIGHT = World.screenSize.height - 50;
 	private final int INITIAL_X = -40;
 	private final int INITIAL_Y = -40;
 	private final int DELAY = 25;
@@ -48,7 +48,7 @@ public class Board extends JPanel {
 		run = true;
 		sprites = new ArrayList<Sprite>();
 
-		player = new Player(500, 660);
+		player = new Player(500, World.screenSize.height - 170);
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 
