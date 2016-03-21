@@ -7,7 +7,7 @@ public class Timer extends Thread{
 	private Player player;
 	private ArrayList<Sprite> sprites;
 	private Board board;
-	private int ticks =400;
+	private int ticks = 100;
 	private boolean run = true;
 	
 	public Timer(Player player, ArrayList<Sprite> sprites, Board board){
@@ -22,7 +22,7 @@ public class Timer extends Thread{
 			if(ticks == 0){
 				
 				board.createObstacle();
-				ticks = 400;
+				ticks = 100;
 			}
 			
 			player.calculatePosition();
