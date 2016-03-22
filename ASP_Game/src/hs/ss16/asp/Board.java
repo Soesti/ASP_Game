@@ -102,8 +102,6 @@ public class Board extends JPanel {
 		int randomPosition = (int) (Math.random() * 700);
 		int randomObstacle = (int) (Math.random() * 2)+1;
 		
-		System.out.println(randomObstacle);
-		
 		if(randomObstacle == 1){
 			Rock rock = new Rock(randomPosition, 0);
 			rock.setSpeed(obstracleSpeed);
@@ -125,7 +123,7 @@ public class Board extends JPanel {
 				if ((player.getYPosition()) <= (sprites.get(i).getYPosition() + sprites.get(i).getHeight()) && (player.getYPosition() + player.getHeight() > sprites.get(i).getYPosition())) {
 					
 					if(sprites.get(i).getClass() == Rock.class){
-					
+
 						if(player.getCurrentLives() == 1){
 							player.decrementLive();
 							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
@@ -195,7 +193,7 @@ public class Board extends JPanel {
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
 		
-		questPanel = new QuestionGUI(this);
+		questPanel = new QuestionGUI();
 	}
 	
 	public void newGame(){
@@ -221,13 +219,16 @@ public class Board extends JPanel {
 		colisionThread.start();
 	}
 	
-	public void pauseGame() {
+	private void pauseGame() {
 		timer.endLoop();
 	}
 	
-	public void continueGame() {
+	private void continueGame() {
 		timer = new Timer(player, sprites, background, this);
 		timer.start();
+		
+		questionTimer = new QuestionTimer(this);
+		questionTimer.start();
 	}
 	
 	public void continueAfterQuestEvent() {
@@ -240,5 +241,12 @@ public class Board extends JPanel {
 		
 		questPanel.askQuestion(this);
 		this.add(questPanel);
+		
+		//Show questions
+		questPanel.revalidate();
+		
+		//Set Fokus to Question GUI. Without Fokus the keylistener doesn't work
+		questPanel.setFocusable(true);
+		questPanel.requestFocus();
 	}
 }

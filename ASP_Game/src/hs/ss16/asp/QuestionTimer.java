@@ -14,14 +14,12 @@ public class QuestionTimer extends Thread {
 	
 	@Override
 	public void run(){
-		while(run){
-			try {
-				sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			board.doQuestionEvent();
+		try {
+			sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+			
+		board.doQuestionEvent();
 	}
 }

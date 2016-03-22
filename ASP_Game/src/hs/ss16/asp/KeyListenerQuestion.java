@@ -8,6 +8,7 @@ public class KeyListenerQuestion implements KeyListener {
 
 	Board board;
 	List<Answer> answers;
+	boolean getAnswer = false;
 	
 	
 	public KeyListenerQuestion(List<Answer> answers, Board board) {
@@ -29,30 +30,37 @@ public class KeyListenerQuestion implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(e.getKeyChar() == '1'){
-			if(answers.get(0).isRight()){
-				//doSomething_____________________________________________________________________
+		if(getAnswer == false){
+			getAnswer = true;
+			if(e.getKeyChar() == '1'){
+				if(answers.get(0).isRight()){
+					//doSomething_____________________________________________________________________
+				}
+				board.continueAfterQuestEvent();
 			}
-			board.continueAfterQuestEvent();
-		}
-		else if(e.getKeyChar() == '2'){
-			if(answers.get(1).isRight()){
-				//doSomething_____________________________________________________________________
+			else if(e.getKeyChar() == '2'){
+				if(answers.get(1).isRight()){
+					//doSomething_____________________________________________________________________
+				}
+				board.continueAfterQuestEvent();
 			}
-			board.continueAfterQuestEvent();
-		}
-		else if(e.getKeyChar() == '3'){
-			if(answers.get(2).isRight()){
-				//doSomething_____________________________________________________________________
+			else if(e.getKeyChar() == '3'){
+				if(answers.get(2).isRight()){
+					//doSomething_____________________________________________________________________
+				}
+				board.continueAfterQuestEvent();
 			}
-			board.continueAfterQuestEvent();
-		}
-		else if(e.getKeyChar() == '4'){
-			if(answers.get(3).isRight()){
-				//doSomething_____________________________________________________________________
+			else if(e.getKeyChar() == '4'){
+				if(answers.get(3).isRight()){
+					//doSomething_____________________________________________________________________
+				}
+				board.continueAfterQuestEvent();
 			}
-			board.continueAfterQuestEvent();
 		}
+	}
+	
+	public void setReady(){
+		getAnswer = false;
 	}
 
 }
