@@ -41,12 +41,13 @@ public class QuestionGUI extends JPanel {
 	}
 	
 	
-	public void askQuestion() {
+	public void askQuestion(Board board) {
 		Question randomQuestion = questionHandler.getRandomQuestion();
 		
 		initializeQuestionGUI(randomQuestion);
 		
-		KeyListenerQuestion keyListernerQuestion = new KeyListenerQuestion(randomQuestion.getAnswers());
+		KeyListenerQuestion keyListernerQuestion = new KeyListenerQuestion(randomQuestion.getAnswers(), board);
+		this.addKeyListener(keyListernerQuestion);
 	}
 
 }

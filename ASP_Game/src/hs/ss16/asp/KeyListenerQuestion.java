@@ -6,10 +6,12 @@ import java.util.List;
 
 public class KeyListenerQuestion implements KeyListener {
 
+	Board board;
 	List<Answer> answers;
 	
 	
-	public KeyListenerQuestion(List<Answer> answers) {
+	public KeyListenerQuestion(List<Answer> answers, Board board) {
+		this.board = board;
 		this.answers = answers;
 	}
 	
@@ -31,21 +33,25 @@ public class KeyListenerQuestion implements KeyListener {
 			if(answers.get(0).isRight()){
 				//doSomething_____________________________________________________________________
 			}
+			board.continueAfterQuestEvent();
 		}
 		else if(e.getKeyChar() == '2'){
 			if(answers.get(1).isRight()){
 				//doSomething_____________________________________________________________________
 			}
+			board.continueAfterQuestEvent();
 		}
 		else if(e.getKeyChar() == '3'){
 			if(answers.get(2).isRight()){
 				//doSomething_____________________________________________________________________
 			}
+			board.continueAfterQuestEvent();
 		}
 		else if(e.getKeyChar() == '4'){
 			if(answers.get(3).isRight()){
 				//doSomething_____________________________________________________________________
 			}
+			board.continueAfterQuestEvent();
 		}
 	}
 

@@ -230,27 +230,15 @@ public class Board extends JPanel {
 		timer.start();
 	}
 	
+	public void continueAfterQuestEvent() {
+		this.remove(questPanel);
+		continueGame();
+	}
+	
 	public void doQuestionEvent() {
 		pauseGame();
 		
-		questPanel.askQuestion();
+		questPanel.askQuestion(this);
 		this.add(questPanel);
-		
-		
-		
-		//wait for the answer of the gamer___________________________not implemented yet__________
-		for(int i = 0; i<1000; i++) {
-			for(int i2 = 0; i2<200; i2++) {
-					System.out.println(",fsaoafoiö");
-			}
-		}
-		//________________________________________________________________________________________
-		
-		
-		
-		this.remove(questPanel);
-		
-		
-		continueGame();
 	}
 }
