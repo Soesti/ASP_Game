@@ -29,17 +29,24 @@ public class QuestionGUI extends JPanel {
 		
 	}
 	
-	public void createNewQuestion(){
-		Question randomQuestion = questionHandler.getRandomQuestion();
-		
-		questionLabel.setText(randomQuestion.getQuestion());
+	public void initializeQuestionGUI(Question question) {
+		questionLabel.setText(question.getQuestion());
 
-		answer1Label.setText(randomQuestion.getAnswers().get(0).getAnswerString());
-		answer2Label.setText(randomQuestion.getAnswers().get(1).getAnswerString());
-		answer3Label.setText(randomQuestion.getAnswers().get(2).getAnswerString());
-		answer4Label.setText(randomQuestion.getAnswers().get(3).getAnswerString());
+		answer1Label.setText(question.getAnswers().get(0).getAnswerString());
+		answer2Label.setText(question.getAnswers().get(1).getAnswerString());
+		answer3Label.setText(question.getAnswers().get(2).getAnswerString());
+		answer4Label.setText(question.getAnswers().get(3).getAnswerString());
 		
 		setVisible(true);
+	}
+	
+	
+	public void askQuestion() {
+		Question randomQuestion = questionHandler.getRandomQuestion();
+		
+		initializeQuestionGUI(randomQuestion);
+		
+		KeyListenerQuestion keyListernerQuestion = new KeyListenerQuestion(randomQuestion.getAnswers());
 	}
 
 }
