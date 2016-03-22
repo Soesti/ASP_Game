@@ -24,6 +24,7 @@ public class Board extends JPanel {
 	private int collectedCarrots;
 
 	private Player player;
+	private Background background;
 	private KeyListenerPlayer keyListenerPlayer;
 	private ArrayList<Sprite> sprites;
 	
@@ -49,10 +50,12 @@ public class Board extends JPanel {
 		sprites = new ArrayList<Sprite>();
 
 		player = new Player(500, World.screenSize.height - 170);
+		background = new Background(B_HEIGHT);
+		background.setSpeed(obstracleSpeed);
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 
-		timer = new Timer(player, sprites, this);
+		timer = new Timer(player, sprites, background, this);
 		timer.start();
 
 		colisionThread = new CollisionThread(this);
@@ -77,6 +80,7 @@ public class Board extends JPanel {
 	private void doDrawing(Graphics g) {
 
 		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawImage(background.getImage(), background.getXPosition(), background.getYPosition(), this);
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
 
 		if(!sprites.isEmpty()){
@@ -203,7 +207,7 @@ public class Board extends JPanel {
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 
-		timer = new Timer(player, sprites, this);
+		timer = new Timer(player, sprites, background, this);
 		timer.start();
 
 		colisionThread = new CollisionThread(this);

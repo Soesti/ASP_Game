@@ -6,13 +6,15 @@ public class Timer extends Thread{
 	
 	private Player player;
 	private ArrayList<Sprite> sprites;
+	private Background background;
 	private Board board;
 	private int ticks = 100;
 	private boolean run = true;
 	
-	public Timer(Player player, ArrayList<Sprite> sprites, Board board){
+	public Timer(Player player, ArrayList<Sprite> sprites, Background background, Board board){
 		this.player = player;
 		this.sprites = sprites;
+		this.background = background;
 		this.board = board;
 	}
 	
@@ -24,7 +26,8 @@ public class Timer extends Thread{
 				board.createObstacle();
 				ticks = 100;
 			}
-			
+
+			background.calculatePosition();
 			player.calculatePosition();
 			for (Sprite sprite : sprites) {
 				 sprite.calculatePosition();
