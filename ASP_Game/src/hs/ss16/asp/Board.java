@@ -1,5 +1,6 @@
 package hs.ss16.asp;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,6 +31,7 @@ public class Board extends JPanel {
 	
 	private Timer timer;
 	private CollisionThread colisionThread;
+	private QuestionTimer questionTimer;
 
 	boolean run;
 	
@@ -39,6 +41,7 @@ public class Board extends JPanel {
 	JLabel life1, life2, life3, collectedCarrotsLabel;
 	JButton newGameButton;
 	JLabel[] lives;
+	QuestionGUI questPanel;
 
 	public Board() {
 
@@ -61,11 +64,13 @@ public class Board extends JPanel {
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
 		
+		questionTimer = new QuestionTimer(this);
+		questionTimer.start();
+		
 		lives = new JLabel[3];
 		lives[0] = life1;
 		lives[1] = life2;
 		lives[2] = life3;
-
 	}
 
 	@Override
@@ -189,6 +194,8 @@ public class Board extends JPanel {
 		life3.setIcon(new ImageIcon("img/life_full.png"));
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
+		
+		questPanel = new QuestionGUI(this);
 	}
 	
 	public void newGame(){
@@ -212,5 +219,32 @@ public class Board extends JPanel {
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
+	}
+	
+	public void pauseGame() {
+		timer.endLoop();
+	}
+	
+	public void continueGame() {
+		timer = new Timer(player, sprites, background, this);
+		timer.start();
+	}
+	
+	public void doQuestionEvent() {
+		pauseGame();
+		
+		questPanel.createNewQuestion();
+		this.add(questPanel);
+		
+		for(int i = 0; i<1000; i++) {
+			for(int i2 = 0; i2<200; i2++) {
+					System.out.println(",fsaoafoiö");
+			}
+		}
+		
+		this.remove(questPanel);
+		
+		
+		continueGame();
 	}
 }
