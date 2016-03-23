@@ -1,5 +1,6 @@
 package hs.ss16.asp;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -49,7 +50,8 @@ public class Board extends JPanel {
 	int width = 20;
 	int obstracleSpeed = 3;
 	
-	JLabel life1, life2, life3, collectedCarrotsLabel, timeLeft;
+	JPanel panel;
+	JLabel life1, life2, life3, timeLeft;
 	JButton newGameButton;
 	JLabel[] lives;
 	QuestionGUI questPanel;
@@ -67,7 +69,6 @@ public class Board extends JPanel {
 			e.printStackTrace();
 		}
 		
-		collectedCarrots = 0;
 		numberOfSeconds = 0;
 		numberOfLifeSeconds = 10;
 
@@ -96,6 +97,16 @@ public class Board extends JPanel {
 		lives[0] = life1;
 		lives[1] = life2;
 		lives[2] = life3;
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(169, 169, 169));
+		panel.setBounds(0, 0, 1000, 96);
+		add(panel);
+		panel.setLayout(null);
+		
+		timeLeft = new JLabel("0");
+		timeLeft.setBounds(944, 37, 46, 22);
+		panel.add(timeLeft);
 	}
 
 	@Override
@@ -109,7 +120,7 @@ public class Board extends JPanel {
 
 	private void doDrawing(Graphics g) {
 		
-		timeLeft.setText(Integer.toString(numberOfLifeSeconds));
+		timeLeft.setText(timeDisplay(numberOfLifeSeconds));
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(background.getImage(), background.getXPosition(), background.getYPosition(), this);
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
@@ -120,8 +131,6 @@ public class Board extends JPanel {
 						((Sprite) sprite).getYPosition(), this);
 			}
 		}
-		
-		collectedCarrotsLabel.setText("" + collectedCarrots);
 	}
 
 	public void createObstacle() {
@@ -225,15 +234,7 @@ public class Board extends JPanel {
 		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
 		Image imageVari = ImageIO.read(resource);
 		ImageIcon ii = new ImageIcon(imageVari);
-		carrots.setIcon(ii);
-		carrots.setBounds(960, 11, 27, 75);
-		add(carrots);
-
-		collectedCarrotsLabel = new JLabel("0");
-		collectedCarrotsLabel.setFont(new Font(collectedCarrotsLabel.getFont().getName(), Font.PLAIN, 40));
-		collectedCarrotsLabel.setBounds(907, 30, 100, 30);
-		add(collectedCarrotsLabel);
-		
+				
 		life1 = new JLabel("");
 		resource = Rock.class.getResourceAsStream("/img/life_full.png");
 		imageVari = ImageIO.read(resource);
@@ -251,10 +252,6 @@ public class Board extends JPanel {
 		life3.setIcon(ii);
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
-		
-		timeLeft = new JLabel("0");
-		timeLeft.setBounds(496, 38, 46, 22);
-		add(timeLeft);
 		
 		questPanel = new QuestionGUI();
 	}
@@ -371,4 +368,17 @@ public class Board extends JPanel {
 			}
 		}
 	}
-}
+	public String timeDisplay(int seconds){
+		String temp = "" ;
+		if(seconds%60 == 0){
+			temp = "00" ;
+		} else if(seconds%60 < 10){
+			temp = "0" + seconds%60 ;
+		} else {
+			temp = "" + seconds%60;
+		}
+		
+		return "0" + (int)seconds/60 + " : " + temp;
+	}
+	}
+
