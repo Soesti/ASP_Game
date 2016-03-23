@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso8859-1"?>
+<questions>
+	<question text="Weswegen sind die Osterinseln so bekannt" id="1">
+		<answer text="Polynesischer Tempel"></answer>
+		<answer text="Monumentalen Steinskulpturen" right="true">
+		</answer>
+		<answer text="Einzigartige Flora und Fauna"/>
+		<answer text="Extreme Temperaturschwankungen"/>
+	</question>
+
+	<question text="Vom wem stammt das Lied Stups der kleine Osterhase" id="2">
+		<answer text="Detlef Jöcker"/>
+		<answer text="Daniel Kallauch"/>
+		<answer text="Rolf Zuckowski" right="true"/> 
+		<answer text="Volker Rosin"/>
+	</question>
+	
+	<question text="Was ist laut dem Christentum an Ostern passiert" id="3">
+		<answer text="Auferstehung Jesu Christi" right="true"/>
+	<answer text="Geburt Jesu Christi"></answer>
+	<answer text="Schwangerschaft Maria"></answer>
+	<answer text="Teilung des Meeres durch Jesu Christi"></answer>
+</question>
+</questions>
+

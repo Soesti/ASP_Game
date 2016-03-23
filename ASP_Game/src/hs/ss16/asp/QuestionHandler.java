@@ -1,6 +1,7 @@
 package hs.ss16.asp;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +30,10 @@ public class QuestionHandler {
 	private void getQuestionsFromXML() {
 		this.questions = new ArrayList<Question>();
 		try {
-			File questionFile = new File("xml/questions.xml");
+			InputStream input = getClass().getResourceAsStream("/xml/questions.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(questionFile);
+			Document doc = dBuilder.parse(input);
 
 			doc.getDocumentElement().normalize();
 			NodeList nList = doc.getElementsByTagName("question");
