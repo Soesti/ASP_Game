@@ -65,6 +65,7 @@ public class HighscorePanel extends JPanel {
 		for(int i = 0; i < scoreLines.length; i++) {
 			add(scoreLines[i]);
 		}
+		setVisible(false);
 	}
 	
 	

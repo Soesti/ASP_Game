@@ -59,6 +59,7 @@ public class Board extends JPanel {
 	JButton newGameButton;
 	JLabel[] lives;
 	QuestionGUI questPanel;
+	HighscorePanel highscore;
 	
 	private int numberOfSeconds;
 	private int numberOfLifeSeconds;
@@ -218,17 +219,9 @@ public class Board extends JPanel {
 							timer.endLoop();
 							questionTimer.stopQuestions();
 							
-							newGameButton = new JButton("Neues Spiel");
-							newGameButton.setBounds(425, 400, 150, 40);
-							newGameButton.addActionListener(new ActionListener() {
-								
-								@Override
-								public void actionPerformed(ActionEvent e) {
-										newGame();
-
-								}
-							});
-							this.add(newGameButton);
+							highscore.activateHighscorePanelAfterGame(numberOfSeconds);
+							highscore.setFocusable(true);
+							highscore.requestFocus();
 							this.repaint();
 							
 							return false;
@@ -283,6 +276,9 @@ public class Board extends JPanel {
 		background = new Background(B_HEIGHT);
 		background.setSpeed(obstracleSpeed);
 		
+		//Create Highscore panel
+		highscore = new HighscorePanel(board);
+		board.add(highscore);
 		
 		JLabel carrots = new JLabel("");
 		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
@@ -399,17 +395,13 @@ public class Board extends JPanel {
 	}
 	public void checkOutOfTime () {
 		if(numberOfLifeSeconds <= 0) {
-			newGameButton = new JButton("Neues Spiel");
-			newGameButton.setBounds(425, 400, 150, 40);
-			newGameButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-						newGame();
-				}
-			});
-			this.add(newGameButton);
+
 			stopAllThreads();
+			
+			highscore.activateHighscorePanelAfterGame(numberOfSeconds);
+			highscore.setFocusable(true);
+			highscore.requestFocus();
+			
 		}
 	}
 	
