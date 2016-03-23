@@ -252,6 +252,7 @@ public class Board extends JPanel {
 		resource = Rock.class.getResourceAsStream("/img/life_full.png");
 		imageVari = ImageIO.read(resource);
 		ii = new ImageIcon(imageVari);
+//		ii.setImage(ii.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		life1.setIcon(ii);
 		life1.setBounds(10, 11, 75, 65);
 		add(life1);

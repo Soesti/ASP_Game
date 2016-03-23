@@ -36,7 +36,7 @@ public class Player extends Sprite {
 		}
 		
 		image = images[0];
-		speed = 15;
+		speed = 5;
 		lives = 3;
 		height = 92;
 		width = 92;

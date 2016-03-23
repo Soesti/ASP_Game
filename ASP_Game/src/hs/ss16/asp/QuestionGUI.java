@@ -47,10 +47,10 @@ public class QuestionGUI extends JPanel {
 	public void initializeQuestionGUI(Question question) {
 		questionLabel.setText(question.getQuestion());
 
-		answer1Label.setText("	1. " + question.getAnswers().get(0).getAnswerString());
-		answer2Label.setText("	2. " + question.getAnswers().get(1).getAnswerString());
-		answer3Label.setText("	3. " + question.getAnswers().get(2).getAnswerString());
-		answer4Label.setText("	4. " + question.getAnswers().get(3).getAnswerString());
+		answer1Label.setText(" \t\t\t\t	1. " + question.getAnswers().get(0).getAnswerString());
+		answer2Label.setText(" \t\t\t\t	2. " + question.getAnswers().get(1).getAnswerString());
+		answer3Label.setText(" \t\t\t\t 3. " + question.getAnswers().get(2).getAnswerString());
+		answer4Label.setText(" \t\t\t\t 4. " + question.getAnswers().get(3).getAnswerString());
 		
 		setVisible(true);
 	}
