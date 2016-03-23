@@ -8,16 +8,14 @@ import java.io.InputStream;
 
 
 /**
- * Created by Patrick on 21.03.2016.
- */
+* Created by Patrick on 21.03.2016.
+*/
 public class Background extends Sprite {
 
     public Background(int boardheight) {
 
         super(0, -boardheight + 50);
 
-
-        
         InputStream resource1 = Rock.class.getResourceAsStream("/img/background.png");
         Image imageVari;
 		try {
@@ -38,7 +36,7 @@ public class Background extends Sprite {
     @Override
     public void calculatePosition() {
 
-        if(this.yPosition >= -40){
+        if(this.yPosition >= -125){
             this.yPosition = -(height /2);
         }
 
