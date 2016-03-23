@@ -212,10 +212,14 @@ public class HighscorePanel extends JPanel {
 	
 	
 	public void typedLetter(String typedLetter) {
+		String name = scoreNames[newestHighscoreIndex];
+		
 		//+1 because there is a '_' behind the name while KeyListenerHighscore is active
-		if(scoreNames[newestHighscoreIndex].length() < MAX_HIGHSCORE_NAME_LENGTH + 1) {
-			scoreNames[newestHighscoreIndex] += typedLetter;
+		if(name.length() < MAX_HIGHSCORE_NAME_LENGTH + 1) {
+			name = name.substring(0, name.length() - 1)  + typedLetter + "_";
 		}
+		
+		scoreNames[newestHighscoreIndex] = name;
 		
 		updateHighscoreLabels();
 	}
@@ -241,7 +245,9 @@ public class HighscorePanel extends JPanel {
 	public void endNameEntry() {
 		removeKeyListener(keyListenerHighscore);
 		
-		scoreLines[newestHighscoreIndex].setText(
-				convertToLabelString(scoreNames[newestHighscoreIndex], scoreTimes[newestHighscoreIndex]));
+		scoreNames[newestHighscoreIndex] 
+				= scoreNames[newestHighscoreIndex].substring(0, scoreNames[newestHighscoreIndex].length() - 1);
+		
+		updateHighscoreLabels();
 	}
 }
