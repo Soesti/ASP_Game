@@ -30,8 +30,8 @@ public class KeyListenerQuestion implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if(getAnswer == false){
-			getAnswer = true;
+		System.out.println("2" + e.getKeyChar());
+		if(!isAnswered(e)){
 			if(e.getKeyChar() == '1'){
 				if(answers.get(0).isRight()){
 					//doSomething_____________________________________________________________________
@@ -61,6 +61,16 @@ public class KeyListenerQuestion implements KeyListener {
 	
 	public void setReady(){
 		getAnswer = false;
+	}
+	
+	private synchronized boolean isAnswered(KeyEvent e){
+		if(e.getKeyChar() == '1'|| e.getKeyChar() == '2' || e.getKeyChar() == '3' || e.getKeyChar() == '4'){
+			if(!getAnswer){
+				getAnswer = true;
+				return false;
+			}
+		}
+		return false;
 	}
 
 }
