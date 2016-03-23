@@ -19,7 +19,12 @@ public class QuestionTimer extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-			
-		board.doQuestionEvent();
+		if(run){
+			board.doQuestionEvent();
+		}	
+	}
+	
+	public void stopQuestions(){
+		run = false;
 	}
 }

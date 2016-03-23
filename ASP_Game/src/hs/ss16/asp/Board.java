@@ -19,6 +19,10 @@ import javax.swing.JPanel;
 
 public class Board extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final int B_WIDTH = 1000;
 	private final int B_HEIGHT = World.screenSize.height - 50;
 	private final int INITIAL_X = -40;
@@ -137,6 +141,7 @@ public class Board extends JPanel {
 							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
 							//Stop gameloop
 							timer.endLoop();
+							questionTimer.stopQuestions();
 							
 							newGameButton = new JButton("Neues Spiel");
 							newGameButton.setBounds(425, 400, 150, 40);
@@ -240,6 +245,9 @@ public class Board extends JPanel {
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
+		
+		questionTimer = new QuestionTimer(this);
+		questionTimer.start();
 	}
 	
 	private void pauseGame() {
@@ -267,6 +275,7 @@ public class Board extends JPanel {
 		
 		//Show questions
 		questPanel.revalidate();
+		questPanel.repaint();
 		
 		//Set Fokus to Question GUI. Without Fokus the keylistener doesn't work
 		questPanel.setFocusable(true);
