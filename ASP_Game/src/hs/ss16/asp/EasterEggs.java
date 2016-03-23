@@ -18,6 +18,9 @@ public class EasterEggs extends Obstacle {
 			e.printStackTrace();
 		}
 		
+		width = 50;
+		height = 50;
+		
 	}
 
 }
