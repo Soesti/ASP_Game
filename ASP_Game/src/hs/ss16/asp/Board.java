@@ -246,8 +246,9 @@ public class Board extends JPanel {
 					}
 					if(sprites.get(i).getClass() == Carrot.class){
 						collectedCarrots++;
-						//Erhöhung der Lebenszeit 
-						increaseNumberOfLifeSeconds(4);
+						//Erhöhung der Lebenszeit
+						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/3)*4)/100)+1.5);
+						increaseNumberOfLifeSeconds(time);
 						sprites.remove(i);
 						i--;
 					}
