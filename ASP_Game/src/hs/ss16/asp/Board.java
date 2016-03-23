@@ -40,6 +40,9 @@ public class Board extends JPanel {
 	private CollisionThread colisionThread;
 	private stopwatchThread stopwatch;
 	private QuestionTimer questionTimer;
+	
+	private int[] difficultArray = {0, 5, 10, 15, 20 , 25, 30 };
+	private int currentDifficult = 0;
 
 	boolean run;
 	
@@ -351,5 +354,20 @@ public class Board extends JPanel {
 		questionTimer.stopQuestions();
 		timer.endLoop();
 		stopwatch.toggleBool();
+	}
+	
+	public void setDifficult(){
+		if(currentDifficult < difficultArray.length-1){
+			if(numberOfLifeSeconds > difficultArray[currentDifficult+1]){
+				
+				obstracleSpeed =+5;
+				background.setSpeed(obstracleSpeed);
+				for(int i = 0; i < sprites.size(); i++){
+					sprites.get(i).setSpeed(obstracleSpeed);
+				}
+				
+				currentDifficult++;
+			}
+		}
 	}
 }

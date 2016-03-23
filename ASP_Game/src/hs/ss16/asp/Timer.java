@@ -25,6 +25,7 @@ public class Timer extends Thread{
 				
 				board.createObstacle();
 				ticks = 100;
+				board.setDifficult();
 			}
 
 			background.calculatePosition();
