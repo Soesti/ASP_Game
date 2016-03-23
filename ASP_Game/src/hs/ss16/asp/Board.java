@@ -323,10 +323,13 @@ public class Board extends JPanel {
 		if(numberOfLifeSeconds <= 0) {
 			
 			pauseGame();
+			stopAllThreads();
 		}
 	}
 	
 	public void stopAllThreads() {
-		
+		questionTimer.stopQuestions();
+		timer.endLoop();
+		stopwatch.toggleBool();
 	}
 }
