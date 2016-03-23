@@ -1,14 +1,17 @@
 package hs.ss16.asp;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -45,7 +48,12 @@ public class Board extends JPanel {
 
 	public Board() {
 
-		initUI();
+		try {
+			initUI();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		collectedCarrots = 0;
 
@@ -136,7 +144,12 @@ public class Board extends JPanel {
 								
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									newGame();
+									try {
+										newGame();
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
 								}
 							});
 							this.add(newGameButton);
@@ -162,14 +175,17 @@ public class Board extends JPanel {
 		return true;
 	}
 
-	private void initUI() {
+	private void initUI() throws IOException {
 		setSize(1000, 800);
 		setFocusable(true);
 		setVisible(true);
 		setLayout(null);
 		
 		JLabel carrots = new JLabel("");
-		carrots.setIcon(new ImageIcon("img/carrot.png"));
+		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
+		Image imageVari = ImageIO.read(resource);
+		ImageIcon ii = new ImageIcon(imageVari);
+		carrots.setIcon(ii);
 		carrots.setBounds(960, 11, 27, 75);
 		add(carrots);
 
@@ -179,30 +195,37 @@ public class Board extends JPanel {
 		add(collectedCarrotsLabel);
 
 		life1 = new JLabel("");
-		life1.setIcon(new ImageIcon("img/life_full.png"));
+		resource = Rock.class.getResourceAsStream("/img/life_full.png");
+		imageVari = ImageIO.read(resource);
+		ii = new ImageIcon(imageVari);
+		life1.setIcon(ii);
 		life1.setBounds(10, 11, 75, 65);
 		add(life1);
 
 		life2 = new JLabel("");
-		life2.setIcon(new ImageIcon("img/life_full.png"));
+		life2.setIcon(ii);
 		life2.setBounds(95, 11, 75, 65);
 		add(life2);
 
 		life3 = new JLabel("");
-		life3.setIcon(new ImageIcon("img/life_full.png"));
+		life3.setIcon(ii);
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
 		
 		questPanel = new QuestionGUI();
 	}
 	
-	public void newGame(){
+	public void newGame() throws IOException{
 		collectedCarrots = 0;
 		this.remove(newGameButton);
 		
-		life1.setIcon(new ImageIcon("img/life_full.png"));
-		life2.setIcon(new ImageIcon("img/life_full.png"));
-		life3.setIcon(new ImageIcon("img/life_full.png"));
+		InputStream resource1 = Rock.class.getResourceAsStream("/img/life_full.png");
+		Image imageVari = ImageIO.read(resource1);
+		ImageIcon ii = new ImageIcon(imageVari);
+		
+		life1.setIcon(ii);
+		life2.setIcon(ii);
+		life3.setIcon(ii);
 		
 		run = true;
 		sprites = new ArrayList<Sprite>();
