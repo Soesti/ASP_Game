@@ -47,6 +47,8 @@ public class Board extends JPanel {
 
 	boolean run;
 	
+	boolean questionActive = false;
+	
 	int width = 20;
 	int obstracleSpeed = 3;
 	
@@ -129,6 +131,17 @@ public class Board extends JPanel {
 			for (Object sprite : sprites) {
 				g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite) sprite).getXPosition(),
 						((Sprite) sprite).getYPosition(), this);
+			}
+		}
+		
+		if(questionActive){
+			try {
+				InputStream resource = Carrot.class.getResourceAsStream("/img/question_border.png");
+				Image image = ImageIO.read(resource);
+				g.drawImage(image, 181, ((int)World.screenSize.getHeight()/2)-291, null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
@@ -301,6 +314,8 @@ public class Board extends JPanel {
 		timer = new Timer(player, sprites, background, this);
 		timer.start();
 		
+		questionActive = false;
+		
 		stopwatch.toggleBool();
 		
 		questionTimer = new QuestionTimer(this);
@@ -316,6 +331,8 @@ public class Board extends JPanel {
 	
 	public void doQuestionEvent() {
 		pauseGame();
+		
+		questionActive = true;
 		
 		questPanel.askQuestion(this);
 		this.add(questPanel);
