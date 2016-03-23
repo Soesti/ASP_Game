@@ -92,7 +92,6 @@ public class Board extends JPanel {
 		lives[0] = life1;
 		lives[1] = life2;
 		lives[2] = life3;
-		//max s. ist doof.
 	}
 
 	@Override
