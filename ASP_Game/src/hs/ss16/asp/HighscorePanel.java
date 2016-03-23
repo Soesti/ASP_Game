@@ -196,6 +196,7 @@ public class HighscorePanel extends JPanel {
 			}
 		});
 		this.add(newGameButton);
+		this.repaint();
 	}
 	
 	
