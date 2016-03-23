@@ -2,8 +2,10 @@ package hs.ss16.asp;
 
 
 import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 public class Player extends Sprite {
 	
@@ -17,12 +19,21 @@ public class Player extends Sprite {
 		
 		//Load all images
 		images = new Image[3];
-		ImageIcon ii1 = new ImageIcon("img/player.png");
-		images[0] = ii1.getImage();
-		ImageIcon ii2 = new ImageIcon("img/player_left.png");
-		images[1] = ii2.getImage();
-		ImageIcon ii3 = new ImageIcon("img/player_right.png");
-		images[2] = ii3.getImage();
+		
+		try {
+			InputStream resource1 = Rock.class.getResourceAsStream("/img/player.png");
+			images[0] = this.image = ImageIO.read(resource1);
+			
+			InputStream resource2 = Rock.class.getResourceAsStream("/img/player_left.png");
+			images[1] = this.image = ImageIO.read(resource2);
+			
+			InputStream resource3 = Rock.class.getResourceAsStream("/img/player_right.png");
+			images[2] = this.image = ImageIO.read(resource3);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		image = images[0];
 		speed = 5;
