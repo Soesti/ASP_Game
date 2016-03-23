@@ -30,7 +30,6 @@ public class KeyListenerQuestion implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("2" + e.getKeyChar());
 		if(!isAnswered(e)){
 			if(e.getKeyChar() == '1'){
 				if(answers.get(0).isRight()){
