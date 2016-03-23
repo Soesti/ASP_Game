@@ -49,6 +49,8 @@ public class Board extends JPanel {
 	JButton newGameButton;
 	JLabel[] lives;
 	QuestionGUI questPanel;
+	
+	int numberOfSeconds;
 
 	public Board() {
 
@@ -60,6 +62,7 @@ public class Board extends JPanel {
 		}
 		
 		collectedCarrots = 0;
+		numberOfSeconds = 0;
 
 		run = true;
 		sprites = new ArrayList<Sprite>();
@@ -222,6 +225,7 @@ public class Board extends JPanel {
 	
 	public void newGame() throws IOException{
 		collectedCarrots = 0;
+		numberOfSeconds = 0;
 		this.remove(newGameButton);
 		
 		InputStream resource1 = Rock.class.getResourceAsStream("/img/life_full.png");
@@ -283,4 +287,9 @@ public class Board extends JPanel {
 		questPanel.setFocusable(true);
 		questPanel.requestFocus();
 	}
+	
+	public void increaseNumberOfSeconds() {
+		numberOfSeconds++;
+	}
+	
 }
