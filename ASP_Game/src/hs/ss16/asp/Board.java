@@ -70,7 +70,7 @@ public class Board extends JPanel {
 		run = true;
 		sprites = new ArrayList<Sprite>();
 
-		player = new Player(500, World.screenSize.height - 170);
+		player = new Player(500, World.screenSize.height - 220);
 		background = new Background(B_HEIGHT);
 		background.setSpeed(obstracleSpeed);
 		keyListenerPlayer = new KeyListenerPlayer(player);
@@ -148,7 +148,17 @@ public class Board extends JPanel {
 
 						if(player.getCurrentLives() == 1){
 							player.decrementLive();
-							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
+							InputStream resource = Rock.class.getResourceAsStream("/img/life_empty.png");
+							Image imageVari;
+							try {
+								imageVari = ImageIO.read(resource);
+								ImageIcon ii = new ImageIcon(imageVari);
+								lives[player.getCurrentLives()].setIcon(ii);
+							} catch (IOException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+							
 							//Stop gameloop
 							timer.endLoop();
 							questionTimer.stopQuestions();
@@ -173,7 +183,16 @@ public class Board extends JPanel {
 						}
 						else{
 							player.decrementLive();
-							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
+							InputStream resource = Rock.class.getResourceAsStream("/img/life_empty.png");
+							Image imageVari;
+							try {
+								imageVari = ImageIO.read(resource);
+								ImageIcon ii = new ImageIcon(imageVari);
+								lives[player.getCurrentLives()].setIcon(ii);
+							} catch (IOException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
 							sprites.remove(i);
 							i--;
 							return true;
@@ -255,7 +274,7 @@ public class Board extends JPanel {
 		sprites = new ArrayList<Sprite>();
 
 		this.removeKeyListener(keyListenerPlayer);
-		player = new Player(500,  World.screenSize.height - 170);
+		player = new Player(500,  World.screenSize.height -220);
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 
