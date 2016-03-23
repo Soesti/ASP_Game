@@ -23,14 +23,14 @@ public class Timer extends Thread{
 		while(run){
 			if(ticks == 0){				
 				board.createObstacle();
-				ticks = 100;
+				ticks = (int)((World.screenSize.getHeight() / board.obstracleSpeed)/3);
 				
 			}
 			board.setDifficult();
 			background.calculatePosition();
 			player.calculatePosition();
-			for (Sprite sprite : sprites) {
-				 sprite.calculatePosition();
+			for (int i = 0; i < sprites.size(); i++) {
+				 sprites.get(i).calculatePosition();
 			 }
 			board.repaint();
 			

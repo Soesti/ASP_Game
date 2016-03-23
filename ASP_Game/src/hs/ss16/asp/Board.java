@@ -35,22 +35,24 @@ public class Board extends JPanel {
 	private Player player;
 	private Background background;
 	private KeyListenerPlayer keyListenerPlayer;
-	private ArrayList<Sprite> sprites;
+	private volatile ArrayList<Sprite> sprites;
 	
 	private Timer timer;
 	private CollisionThread colisionThread;
 	private stopwatchThread stopwatch;
 	private QuestionTimer questionTimer;
 	
-	private int[] difficultArray = {0, 5, 10, 15, 20 , 25, 30 };
+	private int[] difficultArray = {0, 15, 30, 45, 60 , 75 };
 	private int currentDifficult = 0;
+	
+	Board board = this;
 
 	boolean run;
 	
 	boolean questionActive = false;
 	
 	int width = 20;
-	int obstracleSpeed = 3;
+	int obstracleSpeed = 5;
 	
 	JPanel panel;
 	JLabel life1, life2, life3, timeLeft;
@@ -59,9 +61,12 @@ public class Board extends JPanel {
 	QuestionGUI questPanel;
 	
 	private int numberOfSeconds;
-	 int numberOfLifeSeconds;
+	private int numberOfLifeSeconds;
+	
+	private int carrotOnScreen = 0;
+	private int rockNumber = 0;
 	 
-	 private World world;
+	private World world;
 
 	public Board(World world) {
 		//
@@ -125,9 +130,15 @@ public class Board extends JPanel {
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
 
 		if(!sprites.isEmpty()){
-			for (Object sprite : sprites) {
-				g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite) sprite).getXPosition(),
-						((Sprite) sprite).getYPosition(), this);
+			int size = sprites.size();
+			for (int i = 0; i < size; i++) {
+				Sprite sprite = sprites.get(i);
+				g2d.drawImage( sprite.getImage(), sprite.getXPosition(),
+						 sprite.getYPosition(), this);
+				if(size != sprites.size()){
+					size = sprites.size();
+					i--;
+				}
 			}
 		}
 		
@@ -145,19 +156,34 @@ public class Board extends JPanel {
 
 	public void createObstacle() {
 		int randomPosition = (int) (Math.random() * 700);
-		int randomObstacle = (int) (Math.random() * 2)+1;
+		int randomObstacle = (int) (Math.random() * 30)+1;
 		
-		if(randomObstacle == 1){
+		if(carrotOnScreen > 0){
+			Rock rock = new Rock(randomPosition, 0);
+			rock.setSpeed(obstracleSpeed);
+
+			sprites.add(rock);
+			carrotOnScreen--;
+		}
+		else if(rockNumber == 4){
+			Carrot carrot = new Carrot(randomPosition, 0);
+			carrot.setSpeed(obstracleSpeed);
+			
+			sprites.add(carrot);
+			carrotOnScreen = 2;
+		}
+		else if(randomObstacle <= 14){
 			Rock rock = new Rock(randomPosition, 0);
 			rock.setSpeed(obstracleSpeed);
 
 			sprites.add(rock);
 		}
-		if(randomObstacle == 2){
+		else if(randomObstacle <= 28){
 			Carrot carrot = new Carrot(randomPosition, 0);
 			carrot.setSpeed(obstracleSpeed);
 			
 			sprites.add(carrot);
+			carrotOnScreen = 2;
 		}
 	}
 
@@ -284,18 +310,47 @@ public class Board extends JPanel {
 	}
 	
 	private void continueGame() {
-		timer = new Timer(player, sprites, background, this);
-		timer.start();
+		player.setDirection(Direction.Top);
 		
 		questionActive = false;
 		
-		stopwatch = new stopwatchThread(this);
-		stopwatch.start();
+		JLabel wait = new JLabel("3");
 		
-		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
+		board.repaint();
+		wait.setBounds(460, World.screenSize.height/2 - 40, 100,80);
+		wait.setFont(new Font(wait.getName(), Font.PLAIN, 50));
+		this.add(wait);
 		
-		player.setDirection(Direction.Top);
+		new Thread(){
+			 public void run() {
+				try {
+					sleep(500);
+					wait.setText("2");
+					board.repaint();
+					sleep(500);
+					wait.setText("1");
+					board.repaint();
+					sleep(500);
+					wait.setText("GO!");
+					board.repaint();
+					sleep(500);
+					
+					board.remove(wait);
+					
+					timer = new Timer(player, sprites, background, board);
+					timer.start();
+					
+					stopwatch = new stopwatchThread(board);
+					stopwatch.start();
+					
+					questionTimer = new QuestionTimer(board);
+					questionTimer.start();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
+		}.start();
 	}
 	
 	public void continueAfterQuestEvent() {
@@ -363,6 +418,7 @@ public class Board extends JPanel {
 				for(int i = 0; i < sprites.size(); i++){
 					sprites.get(i).setSpeed(obstracleSpeed);
 				}
+				player.setSpeed(player.getSpeed() + 1);
 				
 				currentDifficult++;
 			}
