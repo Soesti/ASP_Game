@@ -32,11 +32,11 @@ public class KeyListenerHighscore implements KeyListener {
 			highscorePanel.typedLetter(pressedKey);
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {  
+		if(e.getKeyChar()=='\b') {  
 	        highscorePanel.removeLastTypedLetter();
 	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+		if(e.getKeyChar()=='\n') {
 		     highscorePanel.endNameEntry();
 		}
 		
