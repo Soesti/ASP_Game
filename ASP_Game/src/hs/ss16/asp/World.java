@@ -17,14 +17,15 @@ public class World extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// Links, Rechts, Oben, Unten
 	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();  
+	private Board board;
 
 	public World(){		
 		initUI();	
 	}
 	
 	private void initUI(){
-		
-		add(new Board());
+		board = new Board(this);
+		add(board);
 		setSize(1000, screenSize.height - 50);
 		setResizable(false);
 		setTitle("BunnyWars");
@@ -42,6 +43,13 @@ public class World extends JFrame {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void createNewBoard(){
+		this.remove(board);
+		board = new Board(this);
+		add(board);
+		board.requestFocus();
 	}
 	
 

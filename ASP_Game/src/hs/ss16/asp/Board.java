@@ -60,10 +60,12 @@ public class Board extends JPanel {
 	
 	private int numberOfSeconds;
 	 int numberOfLifeSeconds;
+	 
+	 private World world;
 
-	public Board() {
+	public Board(World world) {
 		//
-
+		this.world = world;
 		try {
 			initUI();
 		} catch (IOException e) {
@@ -77,12 +79,7 @@ public class Board extends JPanel {
 		run = true;
 		sprites = new ArrayList<Sprite>();
 
-		player = new Player(500, World.screenSize.height - 220);
-		background = new Background(B_HEIGHT);
-		background.setSpeed(obstracleSpeed);
-		keyListenerPlayer = new KeyListenerPlayer(player);
-		this.addKeyListener(keyListenerPlayer);
-
+		
 		timer = new Timer(player, sprites, background, this);
 		timer.start();
 
@@ -195,15 +192,12 @@ public class Board extends JPanel {
 								
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									try {
 										newGame();
-									} catch (IOException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
-									}
+
 								}
 							});
 							this.add(newGameButton);
+							this.repaint();
 							
 							return false;
 						}
@@ -243,6 +237,16 @@ public class Board extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		
+		//Create Player with KeyListener
+		player = new Player(500, World.screenSize.height - 220);
+		keyListenerPlayer = new KeyListenerPlayer(player);
+		this.addKeyListener(keyListenerPlayer);
+		
+		//Create background
+		background = new Background(B_HEIGHT);
+		background.setSpeed(obstracleSpeed);
+		
+		
 		JLabel carrots = new JLabel("");
 		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
 		Image imageVari = ImageIO.read(resource);
@@ -270,40 +274,8 @@ public class Board extends JPanel {
 		questPanel = new QuestionGUI();
 	}
 	
-	public void newGame() throws IOException{
-		collectedCarrots = 0;
-		numberOfSeconds = 0;
-		numberOfLifeSeconds = 10;
-		
-		this.remove(newGameButton);
-		
-		InputStream resource1 = Rock.class.getResourceAsStream("/img/life_full.png");
-		Image imageVari = ImageIO.read(resource1);
-		ImageIcon ii = new ImageIcon(imageVari);
-		
-		life1.setIcon(ii);
-		life2.setIcon(ii);
-		life3.setIcon(ii);
-		
-		run = true;
-		sprites = new ArrayList<Sprite>();
-
-		this.removeKeyListener(keyListenerPlayer);
-		player = new Player(500,  World.screenSize.height -220);
-		keyListenerPlayer = new KeyListenerPlayer(player);
-		this.addKeyListener(keyListenerPlayer);
-
-		timer = new Timer(player, sprites, background, this);
-		timer.start();
-
-		colisionThread = new CollisionThread(this);
-		colisionThread.start();
-		
-		stopwatch = new stopwatchThread(this);
-		stopwatch.start();
-		
-		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
+	public void newGame(){		
+		world.createNewBoard();
 	}
 	
 	private void pauseGame() {
@@ -317,7 +289,8 @@ public class Board extends JPanel {
 		
 		questionActive = false;
 		
-		stopwatch.toggleBool();
+		stopwatch = new stopwatchThread(this);
+		stopwatch.start();
 		
 		questionTimer = new QuestionTimer(this);
 		questionTimer.start();
@@ -360,8 +333,16 @@ public class Board extends JPanel {
 	}
 	public void checkOutOfTime () {
 		if(numberOfLifeSeconds <= 0) {
-			
-			pauseGame();
+			newGameButton = new JButton("Neues Spiel");
+			newGameButton.setBounds(425, 400, 150, 40);
+			newGameButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+						newGame();
+				}
+			});
+			this.add(newGameButton);
 			stopAllThreads();
 		}
 	}
@@ -374,9 +355,10 @@ public class Board extends JPanel {
 	
 	public void setDifficult(){
 		if(currentDifficult < difficultArray.length-1){
-			if(numberOfLifeSeconds > difficultArray[currentDifficult+1]){
+			if(numberOfSeconds > difficultArray[currentDifficult+1]){
 				
-				obstracleSpeed =+5;
+				obstracleSpeed = obstracleSpeed + 1;
+				System.out.println("Raise speed to: " + obstracleSpeed);
 				background.setSpeed(obstracleSpeed);
 				for(int i = 0; i < sprites.size(); i++){
 					sprites.get(i).setSpeed(obstracleSpeed);

@@ -16,17 +16,15 @@ public class stopwatchThread extends Thread {
 	
 	@Override
 	public void run(){
-		while(true) {
-			if(run == true) {
-				try {
-					sleep(1000);
-					board.increaseNumberOfSeconds();
-					board.decreaseNumberOfLifeSeconds(1);
-					board.checkOutOfTime();
-				} catch (InterruptedException e) {
+		while(run) {
+			try {
+				sleep(1000);
+				board.increaseNumberOfSeconds();
+				board.decreaseNumberOfLifeSeconds(1);
+				board.checkOutOfTime();
+			} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				e.printStackTrace();
 			}
 		}
 	}

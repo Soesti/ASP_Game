@@ -21,13 +21,12 @@ public class Timer extends Thread{
 	@Override
 	public void run(){
 		while(run){
-			if(ticks == 0){
-				
+			if(ticks == 0){				
 				board.createObstacle();
 				ticks = 100;
-				board.setDifficult();
+				
 			}
-
+			board.setDifficult();
 			background.calculatePosition();
 			player.calculatePosition();
 			for (Sprite sprite : sprites) {
