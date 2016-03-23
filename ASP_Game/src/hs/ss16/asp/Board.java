@@ -185,6 +185,12 @@ public class Board extends JPanel {
 			sprites.add(carrot);
 			carrotOnScreen = 2;
 		}
+		/*else{
+			EasterEggs egg = new EasterEggs(randomPosition, 0);
+			egg.setSpeed(obstracleSpeed);
+			
+			sprites.add(egg);
+		}*/
 	}
 
 	public boolean checkCollisions() {
@@ -244,13 +250,17 @@ public class Board extends JPanel {
 							return true;
 						}
 					}
-					if(sprites.get(i).getClass() == Carrot.class){
+					else if(sprites.get(i).getClass() == Carrot.class){
 						collectedCarrots++;
 						//Erhöhung der Lebenszeit
-						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/3)*4)/100)+1.5);
+						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/3)*4)/100)+0.5);
 						increaseNumberOfLifeSeconds(time);
 						sprites.remove(i);
 						i--;
+					}
+					
+					else if(sprites.get(i).getClass() == EasterEggs.class){
+						
 					}
 				}
 			}
@@ -437,5 +447,4 @@ public class Board extends JPanel {
 		
 		return "0" + (int)seconds/60 + " : " + temp;
 	}
-	}
-
+}
