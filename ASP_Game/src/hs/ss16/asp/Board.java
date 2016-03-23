@@ -51,8 +51,8 @@ public class Board extends JPanel {
 	JLabel[] lives;
 	QuestionGUI questPanel;
 	
-	int numberOfSeconds;
-	int numberOfLifeSeconds;
+	private int numberOfSeconds;
+	 int numberOfLifeSeconds;
 
 	public Board() {
 
@@ -182,6 +182,8 @@ public class Board extends JPanel {
 					}
 					if(sprites.get(i).getClass() == Carrot.class){
 						collectedCarrots++;
+						//Erhöhung der Lebenszeit 
+						increaseNumberOfLifeSeconds(4);
 						sprites.remove(i);
 						i--;
 					}
