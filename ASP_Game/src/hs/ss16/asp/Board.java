@@ -38,6 +38,7 @@ public class Board extends JPanel {
 	
 	private Timer timer;
 	private CollisionThread colisionThread;
+	private stopwatchThread stopwatch;
 	private QuestionTimer questionTimer;
 
 	boolean run;
@@ -51,6 +52,7 @@ public class Board extends JPanel {
 	QuestionGUI questPanel;
 	
 	int numberOfSeconds;
+	int numberOfLifeSeconds;
 
 	public Board() {
 
@@ -63,6 +65,7 @@ public class Board extends JPanel {
 		
 		collectedCarrots = 0;
 		numberOfSeconds = 0;
+		numberOfLifeSeconds = 10;
 
 		run = true;
 		sprites = new ArrayList<Sprite>();
@@ -78,6 +81,9 @@ public class Board extends JPanel {
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
+		
+		stopwatch = new stopwatchThread(this);
+		stopwatch.start();
 		
 		questionTimer = new QuestionTimer(this);
 		questionTimer.start();
@@ -99,7 +105,8 @@ public class Board extends JPanel {
 	}
 
 	private void doDrawing(Graphics g) {
-
+		
+		timeLeft.setText(Integer.toString(numberOfLifeSeconds));
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(background.getImage(), background.getXPosition(), background.getYPosition(), this);
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
@@ -221,7 +228,7 @@ public class Board extends JPanel {
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
 		
-		timeLeft = new JLabel("");
+		timeLeft = new JLabel("0");
 		timeLeft.setBounds(496, 38, 46, 22);
 		add(timeLeft);
 		
@@ -231,6 +238,8 @@ public class Board extends JPanel {
 	public void newGame() throws IOException{
 		collectedCarrots = 0;
 		numberOfSeconds = 0;
+		numberOfLifeSeconds = 10;
+		
 		this.remove(newGameButton);
 		
 		InputStream resource1 = Rock.class.getResourceAsStream("/img/life_full.png");
@@ -255,17 +264,23 @@ public class Board extends JPanel {
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
 		
+		stopwatch = new stopwatchThread(this);
+		stopwatch.start();
+		
 		questionTimer = new QuestionTimer(this);
 		questionTimer.start();
 	}
 	
 	private void pauseGame() {
+		stopwatch.toggleBool();
 		timer.endLoop();
 	}
 	
 	private void continueGame() {
 		timer = new Timer(player, sprites, background, this);
 		timer.start();
+		
+		stopwatch.toggleBool();
 		
 		questionTimer = new QuestionTimer(this);
 		questionTimer.start();
@@ -295,5 +310,23 @@ public class Board extends JPanel {
 	
 	public void increaseNumberOfSeconds() {
 		numberOfSeconds++;
+	}
+	
+	public void increaseNumberOfLifeSeconds (int seconds) {
+		numberOfLifeSeconds = numberOfLifeSeconds + seconds;
+	}
+	
+	public void decreaseNumberOfLifeSeconds (int seconds) {
+		numberOfLifeSeconds = numberOfLifeSeconds - seconds;
+	}
+	public void checkOutOfTime () {
+		if(numberOfLifeSeconds <= 0) {
+			
+			pauseGame();
+		}
+	}
+	
+	public void stopAllThreads() {
+		
 	}
 }
