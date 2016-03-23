@@ -236,7 +236,7 @@ public class Board extends JPanel {
 		sprites = new ArrayList<Sprite>();
 
 		this.removeKeyListener(keyListenerPlayer);
-		player = new Player(500, 660);
+		player = new Player(500,  World.screenSize.height - 170);
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 
@@ -260,6 +260,8 @@ public class Board extends JPanel {
 		
 		questionTimer = new QuestionTimer(this);
 		questionTimer.start();
+		
+		player.setDirection(Direction.Top);
 	}
 	
 	public void continueAfterQuestEvent() {
