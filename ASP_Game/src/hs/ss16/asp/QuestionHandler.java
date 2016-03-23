@@ -1,6 +1,5 @@
 package hs.ss16.asp;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +41,14 @@ public class QuestionHandler {
 				List<Answer> answers = new ArrayList<Answer>();
 				Node questionNode = nList.item(i);
 				if (questionNode.getNodeType() == Node.ELEMENT_NODE) {
-					boolean right = false;
+			
 					Element questionElement = (Element) nList.item(i);
 					String questionText = questionElement.getAttribute("text");
 
 					NodeList answerNodes = questionElement.getElementsByTagName("answer");
 					for (int j = 0; j < answerNodes.getLength(); j++) {
 						Node answerNode = answerNodes.item(j);
+						boolean right = false;
 						if (answerNode.getNodeType() == Node.ELEMENT_NODE) {
 							Element answerElement = (Element) answerNode;
 							String answerText = answerElement.getAttribute("text");
@@ -62,7 +62,6 @@ public class QuestionHandler {
 					Question question = new Question(answers, questionText);
 					this.questions.add(question);
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
