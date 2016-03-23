@@ -17,7 +17,6 @@ public class stopwatchThread extends Thread {
 	@Override
 	public void run(){
 		while(true) {
-			System.out.println(board.numberOfLifeSeconds);
 			if(run == true) {
 				try {
 					sleep(1000);
