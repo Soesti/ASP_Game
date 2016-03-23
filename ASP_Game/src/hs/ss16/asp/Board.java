@@ -55,6 +55,7 @@ public class Board extends JPanel {
 	 int numberOfLifeSeconds;
 
 	public Board() {
+		//
 
 		try {
 			initUI();
