@@ -1,18 +1,13 @@
 package hs.ss16.asp;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -27,9 +22,6 @@ public class HighscorePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int G_Width = 600;
 	private static final int G_Height = 300;
-	
-	private static final int SCORE_LABELS_WIDTH = 150;
-	private static final int SCORE_LABELS_HEIGHT = 20;
 	
 	private static final int MAX_HIGHSCORE_NAME_LENGTH = 10;
 	private static final int SPACE_UNTIL_TIMESCORE_DISPLAYED = MAX_HIGHSCORE_NAME_LENGTH + 5;
@@ -110,8 +102,6 @@ public class HighscorePanel extends JPanel {
 			labelString += "00";
 		else
 			labelString += seconds;
-		
-		System.out.println(labelString);
 		
 		return labelString;
 	}

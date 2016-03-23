@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -279,16 +277,11 @@ public class Board extends JPanel {
 		//Create Highscore panel
 		highscore = new HighscorePanel(board);
 		board.add(highscore);
-		
-		JLabel carrots = new JLabel("");
-		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
-		Image imageVari = ImageIO.read(resource);
-		ImageIcon ii = new ImageIcon(imageVari);
 				
 		life1 = new JLabel("");
-		resource = Rock.class.getResourceAsStream("/img/life_full.png");
-		imageVari = ImageIO.read(resource);
-		ii = new ImageIcon(imageVari);
+		InputStream resource = Rock.class.getResourceAsStream("/img/life_full.png");
+		Image imageVari = ImageIO.read(resource);
+		ImageIcon ii = new ImageIcon(imageVari);
 //		ii.setImage(ii.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		life1.setIcon(ii);
 		life1.setBounds(10, 11, 75, 65);
