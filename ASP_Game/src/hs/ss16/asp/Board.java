@@ -45,7 +45,7 @@ public class Board extends JPanel {
 	int width = 20;
 	int obstracleSpeed = 3;
 	
-	JLabel life1, life2, life3, collectedCarrotsLabel;
+	JLabel life1, life2, life3, collectedCarrotsLabel, timeLeft;
 	JButton newGameButton;
 	JLabel[] lives;
 	QuestionGUI questPanel;
@@ -86,6 +86,7 @@ public class Board extends JPanel {
 		lives[0] = life1;
 		lives[1] = life2;
 		lives[2] = life3;
+		
 	}
 
 	@Override
@@ -201,7 +202,7 @@ public class Board extends JPanel {
 		collectedCarrotsLabel.setFont(new Font(collectedCarrotsLabel.getFont().getName(), Font.PLAIN, 40));
 		collectedCarrotsLabel.setBounds(907, 30, 100, 30);
 		add(collectedCarrotsLabel);
-
+		
 		life1 = new JLabel("");
 		resource = Rock.class.getResourceAsStream("/img/life_full.png");
 		imageVari = ImageIO.read(resource);
@@ -219,6 +220,10 @@ public class Board extends JPanel {
 		life3.setIcon(ii);
 		life3.setBounds(180, 11, 75, 65);
 		add(life3);
+		
+		timeLeft = new JLabel("");
+		timeLeft.setBounds(496, 38, 46, 22);
+		add(timeLeft);
 		
 		questPanel = new QuestionGUI();
 	}
@@ -291,5 +296,4 @@ public class Board extends JPanel {
 	public void increaseNumberOfSeconds() {
 		numberOfSeconds++;
 	}
-	
 }
