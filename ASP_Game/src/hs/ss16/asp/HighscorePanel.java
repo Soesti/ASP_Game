@@ -46,7 +46,7 @@ public class HighscorePanel extends JPanel {
 		
 		this.board = board;
 		
-		setBounds(200, ((int)World.screenSize.getHeight()/2)-150,G_Width, G_Height);
+		setBounds(200, ((int)World.screenSize.getHeight()/2)-148,G_Width, G_Height);
 		setLayout(new GridLayout(7,1));
 		
 		loadScores();
@@ -58,6 +58,7 @@ public class HighscorePanel extends JPanel {
 			add(scoreLines[i]);
 		}
 		setVisible(false);
+		this.setOpaque( false ) ;
 	}
 	
 	

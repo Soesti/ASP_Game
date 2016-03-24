@@ -187,9 +187,20 @@ public class Board extends JPanel {
 			}
 		}
 		
-		if(questionActive){
+		if(questionActive && run){
 			try {
 				InputStream resource = Carrot.class.getResourceAsStream("/img/question_border.png");
+				Image image = ImageIO.read(resource);
+				g.drawImage(image, 181, ((int)World.screenSize.getHeight()/2)-291, null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(!run){
+			try {
+				InputStream resource = Carrot.class.getResourceAsStream("/img/score_border.png");
 				Image image = ImageIO.read(resource);
 				g.drawImage(image, 181, ((int)World.screenSize.getHeight()/2)-291, null);
 			} catch (IOException e) {
@@ -259,6 +270,7 @@ public class Board extends JPanel {
 								// TODO Auto-generated catch block
 								e2.printStackTrace();
 							}
+							run = false;
 							
 							//Stop gameloop
 							timer.endLoop();
@@ -457,6 +469,7 @@ public class Board extends JPanel {
 	public void checkOutOfTime () {
 		if(numberOfLifeSeconds <= 0) {
 
+			run = false;
 			stopAllThreads();
 			
 			highscore.activateHighscorePanelAfterGame(numberOfSeconds);
