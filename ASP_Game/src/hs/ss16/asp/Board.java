@@ -112,6 +112,7 @@ public class Board extends JPanel {
 		panel.add(timeLeft);
 		
 		JLabel startLabel = new JLabel("3", SwingConstants.CENTER);
+		startLabel.setForeground(Color.white);
 		startLabel.setBounds(460, World.screenSize.height/2 - 40, 100,80);
 		startLabel.setFont(new Font(startLabel.getName(), Font.PLAIN, 50));
 		this.add(startLabel);
@@ -363,10 +364,11 @@ public class Board extends JPanel {
 		
 		questionActive = false;
 		
-		JLabel wait = new JLabel("3");
+		JLabel wait = new JLabel("3", SwingConstants.CENTER);
 		
 		board.repaint();
 		wait.setBounds(460, World.screenSize.height/2 - 40, 100,80);
+		wait.setForeground(Color.white);
 		wait.setFont(new Font(wait.getName(), Font.PLAIN, 50));
 		this.add(wait);
 		
