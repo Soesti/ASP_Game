@@ -15,7 +15,7 @@ public class QuestionTimer extends Thread {
 	@Override
 	public void run(){
 		try {
-			sleep(5000);
+			sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

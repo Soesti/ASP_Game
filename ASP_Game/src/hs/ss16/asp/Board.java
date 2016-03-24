@@ -59,6 +59,8 @@ public class Board extends JPanel {
 	QuestionGUI questPanel;
 	HighscorePanel highscore;
 	
+	boolean isSpriteRemoved = false;
+	
 	private int numberOfSeconds;
 	private int numberOfLifeSeconds;
 	
@@ -85,16 +87,13 @@ public class Board extends JPanel {
 
 		
 		timer = new Timer(player, sprites, background, this);
-		timer.start();
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
 		
 		stopwatch = new stopwatchThread(this);
-		stopwatch.start();
 		
 		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
 		
 		lives = new JLabel[3];
 		lives[0] = life1;
@@ -110,6 +109,37 @@ public class Board extends JPanel {
 		timeLeft = new JLabel("0");
 		timeLeft.setBounds(944, 37, 46, 22);
 		panel.add(timeLeft);
+		
+		JLabel startLabel = new JLabel("3");
+		startLabel.setBounds(460, World.screenSize.height/2 - 40, 100,80);
+		startLabel.setFont(new Font(startLabel.getName(), Font.PLAIN, 50));
+		this.add(startLabel);
+		
+		new Thread(){
+			 public void run() {
+				try {
+					sleep(500);
+					startLabel.setText("2");
+					board.repaint();
+					sleep(500);
+					startLabel.setText("1");
+					board.repaint();
+					sleep(500);
+					startLabel.setText("GO!");
+					board.repaint();
+					sleep(500);
+					
+					board.remove(startLabel);
+					
+					timer.start();
+					questionTimer.start();
+					stopwatch.start();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
+		}.start();
 	}
 
 	@Override
@@ -184,12 +214,12 @@ public class Board extends JPanel {
 			sprites.add(carrot);
 			carrotOnScreen = 2;
 		}
-		/*else{
+		else{
 			EasterEggs egg = new EasterEggs(randomPosition, 0);
 			egg.setSpeed(obstracleSpeed);
 			
 			sprites.add(egg);
-		}*/
+		}
 	}
 
 	public boolean checkCollisions() {
@@ -216,6 +246,7 @@ public class Board extends JPanel {
 							//Stop gameloop
 							timer.endLoop();
 							questionTimer.stopQuestions();
+							stopwatch.toggleBool();
 							
 							highscore.activateHighscorePanelAfterGame(numberOfSeconds);
 							highscore.setFocusable(true);
@@ -236,7 +267,7 @@ public class Board extends JPanel {
 								// TODO Auto-generated catch block
 								e2.printStackTrace();
 							}
-							sprites.remove(i);
+							removeSprite(i);
 							i--;
 							return true;
 						}
@@ -244,14 +275,31 @@ public class Board extends JPanel {
 					else if(sprites.get(i).getClass() == Carrot.class){
 						collectedCarrots++;
 						//Erhöhung der Lebenszeit
-						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/3)*4)/100)+0.5);
+						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/(World.screenSize.getHeight()/200))*4)/100)+0.5);
 						increaseNumberOfLifeSeconds(time);
-						sprites.remove(i);
+						removeSprite(i);
 						i--;
 					}
 					
 					else if(sprites.get(i).getClass() == EasterEggs.class){
-						
+						increaseNumberOfLifeSeconds(3);
+						JLabel newsLabel = new JLabel("+ 3 Sekunden!");
+						newsLabel.setBounds(300, World.screenSize.height/2 - 40, 400,80);
+						newsLabel.setFont(new Font(newsLabel.getName(), Font.PLAIN, 50));
+						this.add(newsLabel);
+						new Thread(){
+							public void run(){
+								try {
+									sleep(1000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								board.remove(newsLabel);
+							}
+						}.start();
+						removeSprite(i);
+						i--;
 					}
 				}
 			}
@@ -420,6 +468,21 @@ public class Board extends JPanel {
 			}
 		}
 	}
+	
+	private void removeSprite(int index){
+		isSpriteRemoved = true;
+		sprites.remove(index);
+	}
+	
+	public boolean isSpriteRemove(){
+		if(isSpriteRemoved){
+			isSpriteRemoved = false;
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public String timeDisplay(int seconds){
 		String temp = "" ;
 		if(seconds%60 == 0){
