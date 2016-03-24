@@ -22,7 +22,8 @@ public class QuestionHandler {
 		if (this.questions == null) {
 			getQuestionsFromXML();
 		}
-		int randomNumber = (int) Math.random() * questions.size();
+		int randomNumber = (int) (Math.random() * questions.size());
+		System.out.println(randomNumber);
 		return questions.get(randomNumber);
 	}
 
