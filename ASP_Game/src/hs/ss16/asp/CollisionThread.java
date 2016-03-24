@@ -1,18 +1,12 @@
 package hs.ss16.asp;
 
-import java.util.ArrayList;
-
 public class CollisionThread extends Thread{
-	Player play;
-	ArrayList<Sprite> sprites;
 	Board board;
 	
 	boolean noHit = true;
 	int sleepMilliseconds = 100;
 	
 	public CollisionThread(Board board){
-		this.play = play;
-		this.sprites = sprites;
 		this.board = board;
 	}
 	

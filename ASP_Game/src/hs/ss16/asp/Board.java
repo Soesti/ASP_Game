@@ -23,13 +23,7 @@ public class Board extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final int B_WIDTH = 1000;
 	private final int B_HEIGHT = World.screenSize.height - 50;
-	private final int INITIAL_X = -40;
-	private final int INITIAL_Y = -40;
-	private final int DELAY = 25;
-	
-	private int collectedCarrots;
 
 	private Player player;
 	private Background background;
@@ -108,6 +102,11 @@ public class Board extends JPanel {
 		
 		
 		panel = new JPanel(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
@@ -303,7 +302,6 @@ public class Board extends JPanel {
 						}
 					}
 					else if(sprites.get(i).getClass() == Carrot.class){
-						collectedCarrots++;
 						//Erhöhung der Lebenszeit
 						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/(World.screenSize.getHeight()/200))*4)/100)+0.5);
 						increaseNumberOfLifeSeconds(time);
@@ -314,6 +312,7 @@ public class Board extends JPanel {
 					else if(sprites.get(i).getClass() == EasterEggs.class){
 						increaseNumberOfLifeSeconds(3);
 						JLabel newsLabel = new JLabel("+ 3 Sekunden!");
+						newsLabel.setForeground(Color.WHITE);
 						newsLabel.setBounds(300, World.screenSize.height/2 - 40, 400,80);
 						newsLabel.setFont(new Font(newsLabel.getName(), Font.PLAIN, 50));
 						this.add(newsLabel);
@@ -361,7 +360,6 @@ public class Board extends JPanel {
 		Image imageVari = ImageIO.read(resource);
 		imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
 		ImageIcon ii = new ImageIcon(imageVari);
-//		ii.setImage(ii.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		life1.setIcon(ii);
 		life1.setBounds(5, 3, 40, 35);
 		add(life1);
@@ -487,8 +485,7 @@ public class Board extends JPanel {
 	
 	public void setDifficult(){
 		if(currentDifficult < difficultArray.length-1){
-			if(numberOfSeconds > difficultArray[currentDifficult+1]){
-				
+			if(numberOfSeconds > difficultArray[currentDifficult+1]){				
 				obstracleSpeed = obstracleSpeed + 1;
 				System.out.println("Raise speed to: " + obstracleSpeed);
 				background.setSpeed(obstracleSpeed);

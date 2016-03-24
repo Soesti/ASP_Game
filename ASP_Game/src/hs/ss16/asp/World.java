@@ -64,6 +64,7 @@ public class World extends JFrame {
 	
 
 	public static void main(String[] args){
+		@SuppressWarnings("unused")
 		World world = new World();
 		
 	}
