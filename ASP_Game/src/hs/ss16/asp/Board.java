@@ -70,7 +70,7 @@ public class Board extends JPanel {
 	 
 	private World world;
 
-	public Board(World world) {
+	public Board(World world) throws IOException {
 		//
 		this.world = world;
 		try {
@@ -101,14 +101,28 @@ public class Board extends JPanel {
 		lives[1] = life2;
 		lives[2] = life3;
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(169, 169, 169));
-		panel.setBounds(0, 0, 1000, 96);
+		InputStream panelResource = Rock.class.getResourceAsStream("/img/panel.png");
+	    Image imagePanel;
+		imagePanel = ImageIO.read(panelResource);
+		Image imagePanel2 = imagePanel.getScaledInstance(1000, 40, Image.SCALE_DEFAULT);
+		
+		
+		panel = new JPanel(){
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(imagePanel2, 0, 0, null);
+				
+			}
+		};
+		panel.setBounds(0, 0, 1000, 40);
 		add(panel);
 		panel.setLayout(null);
 		
 		timeLeft = new JLabel("0");
-		timeLeft.setBounds(944, 37, 46, 22);
+		timeLeft.setForeground(Color.white);
+		timeLeft.setFont(new Font(timeLeft.getName(), Font.PLAIN, 20));
+		timeLeft.setBounds(924, 5, 66, 32);
 		panel.add(timeLeft);
 		
 		JLabel startLabel = new JLabel("3", SwingConstants.CENTER);
@@ -238,6 +252,7 @@ public class Board extends JPanel {
 							Image imageVari;
 							try {
 								imageVari = ImageIO.read(resource);
+								imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
 								ImageIcon ii = new ImageIcon(imageVari);
 								lives[player.getCurrentLives()].setIcon(ii);
 							} catch (IOException e2) {
@@ -263,6 +278,7 @@ public class Board extends JPanel {
 							Image imageVari;
 							try {
 								imageVari = ImageIO.read(resource);
+								imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
 								ImageIcon ii = new ImageIcon(imageVari);
 								lives[player.getCurrentLives()].setIcon(ii);
 							} catch (IOException e2) {
@@ -316,7 +332,7 @@ public class Board extends JPanel {
 		setLayout(null);
 		
 		//Create Player with KeyListener
-		player = new Player(500, World.screenSize.height - 220);
+		player = new Player(454, World.screenSize.height - 220);
 		keyListenerPlayer = new KeyListenerPlayer(player);
 		this.addKeyListener(keyListenerPlayer);
 		
@@ -329,22 +345,23 @@ public class Board extends JPanel {
 		board.add(highscore);
 				
 		life1 = new JLabel("");
-		InputStream resource = Rock.class.getResourceAsStream("/img/life_full.png");
+		InputStream resource = Board.class.getResourceAsStream("/img/life_full.png");
 		Image imageVari = ImageIO.read(resource);
+		imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
 		ImageIcon ii = new ImageIcon(imageVari);
 //		ii.setImage(ii.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		life1.setIcon(ii);
-		life1.setBounds(10, 11, 75, 65);
+		life1.setBounds(5, 3, 40, 35);
 		add(life1);
 
 		life2 = new JLabel("");
 		life2.setIcon(ii);
-		life2.setBounds(95, 11, 75, 65);
+		life2.setBounds(50, 3, 40, 35);
 		add(life2);
 
 		life3 = new JLabel("");
 		life3.setIcon(ii);
-		life3.setBounds(180, 11, 75, 65);
+		life3.setBounds(95, 3, 40, 35);
 		add(life3);
 		
 		questPanel = new QuestionGUI();

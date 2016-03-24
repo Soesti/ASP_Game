@@ -24,7 +24,12 @@ public class World extends JFrame {
 	}
 	
 	private void initUI(){
-		board = new Board(this);
+		try {
+			board = new Board(this);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		add(board);
 		setSize(1000, screenSize.height - 50);
 		setResizable(false);
@@ -47,7 +52,12 @@ public class World extends JFrame {
 	
 	public void createNewBoard(){
 		this.remove(board);
-		board = new Board(this);
+		try {
+			board = new Board(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		add(board);
 		board.requestFocus();
 	}
