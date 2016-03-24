@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Board extends JPanel {
 
@@ -110,7 +111,7 @@ public class Board extends JPanel {
 		timeLeft.setBounds(944, 37, 46, 22);
 		panel.add(timeLeft);
 		
-		JLabel startLabel = new JLabel("3");
+		JLabel startLabel = new JLabel("3", SwingConstants.CENTER);
 		startLabel.setBounds(460, World.screenSize.height/2 - 40, 100,80);
 		startLabel.setFont(new Font(startLabel.getName(), Font.PLAIN, 50));
 		this.add(startLabel);
