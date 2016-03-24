@@ -61,6 +61,7 @@ public class Board extends JPanel {
 	
 	private int carrotOnScreen = 0;
 	private int rockNumber = 0;
+	private int lastRandomPosition = -1000;
 	 
 	private World world;
 
@@ -213,39 +214,45 @@ public class Board extends JPanel {
 		int randomPosition = (int) (Math.random() * 700);
 		int randomObstacle = (int) (Math.random() * 30)+1;
 		
+		while(randomPosition - lastRandomPosition < 50 && randomPosition - lastRandomPosition > -50){
+			randomPosition = (int) (Math.random() * 700);
+		}
+		lastRandomPosition = randomPosition;
+		
 		if(carrotOnScreen > 0){
-			Rock rock = new Rock(randomPosition, 0);
+			Rock rock = new Rock(randomPosition, -100);
 			rock.setSpeed(obstracleSpeed);
 
 			sprites.add(rock);
 			carrotOnScreen--;
 		}
 		else if(rockNumber == 4){
-			Carrot carrot = new Carrot(randomPosition, 0);
+			Carrot carrot = new Carrot(randomPosition, -100);
 			carrot.setSpeed(obstracleSpeed);
 			
 			sprites.add(carrot);
 			carrotOnScreen = 2;
 		}
 		else if(randomObstacle <= 14){
-			Rock rock = new Rock(randomPosition, 0);
+			Rock rock = new Rock(randomPosition, -100);
 			rock.setSpeed(obstracleSpeed);
 
 			sprites.add(rock);
 		}
-		else if(randomObstacle <= 28){
-			Carrot carrot = new Carrot(randomPosition, 0);
+		else if(randomObstacle <= 16){
+			EasterEggs egg = new EasterEggs(randomPosition, -100);
+			egg.setSpeed(obstracleSpeed);
+			
+			sprites.add(egg);
+		}
+		else {
+			Carrot carrot = new Carrot(randomPosition, -100);
 			carrot.setSpeed(obstracleSpeed);
 			
 			sprites.add(carrot);
 			carrotOnScreen = 2;
 		}
-		else{
-			EasterEggs egg = new EasterEggs(randomPosition, 0);
-			egg.setSpeed(obstracleSpeed);
-			
-			sprites.add(egg);
-		}
+		
 	}
 
 	public boolean checkCollisions() {
