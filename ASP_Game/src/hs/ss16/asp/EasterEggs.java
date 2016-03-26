@@ -11,12 +11,15 @@ public class EasterEggs extends Obstacle {
 		super(xPosition, yPosition);
 
 		try {
-			InputStream resource = EasterEggs.class.getResourceAsStream("/img/carrot.png");
+			InputStream resource = EasterEggs.class.getResourceAsStream("/img/egg.png");
 			this.image = ImageIO.read(resource);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		width = 50;
+		height = 50;
 		
 	}
 

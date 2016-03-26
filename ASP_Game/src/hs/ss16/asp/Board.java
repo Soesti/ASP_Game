@@ -1,12 +1,11 @@
 package hs.ss16.asp;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Board extends JPanel {
 
@@ -23,39 +23,51 @@ public class Board extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final int B_WIDTH = 1000;
 	private final int B_HEIGHT = World.screenSize.height - 50;
-	private final int INITIAL_X = -40;
-	private final int INITIAL_Y = -40;
-	private final int DELAY = 25;
-	
-	private int collectedCarrots;
 
 	private Player player;
 	private Background background;
 	private KeyListenerPlayer keyListenerPlayer;
-	private ArrayList<Sprite> sprites;
+	private volatile ArrayList<Sprite> sprites;
 	
 	private Timer timer;
 	private CollisionThread colisionThread;
 	private stopwatchThread stopwatch;
 	private QuestionTimer questionTimer;
+	
+	private int[] difficultArray = {0, 15, 30, 45, 60 , 75 };
+	private int currentDifficult = 0;
+	
+	Board board = this;
 
 	boolean run;
 	
-	int width = 20;
-	int obstracleSpeed = 3;
+	boolean questionActive = false;
 	
-	JLabel life1, life2, life3, collectedCarrotsLabel, timeLeft;
+	int width = 20;
+	int obstracleSpeed = 5;
+	
+	JPanel panel;
+	JLabel life1, life2, life3, timeLeft;
 	JButton newGameButton;
 	JLabel[] lives;
 	QuestionGUI questPanel;
+	HighscorePanel highscore;
 	
-	int numberOfSeconds;
-	int numberOfLifeSeconds;
+	boolean isSpriteRemoved = false;
+	
+	private int numberOfSeconds;
+	private int numberOfLifeSeconds;
+	
+	private int carrotOnScreen = 0;
+	private int rockNumber = 0;
+	private int lastRandomPosition = -1000;
+	 
+	private World world;
 
-	public Board() {
-
+	public Board(World world) throws IOException {
+		//
+		this.world = world;
 		try {
 			initUI();
 		} catch (IOException e) {
@@ -63,35 +75,87 @@ public class Board extends JPanel {
 			e.printStackTrace();
 		}
 		
-		collectedCarrots = 0;
 		numberOfSeconds = 0;
 		numberOfLifeSeconds = 10;
 
 		run = true;
 		sprites = new ArrayList<Sprite>();
 
-		player = new Player(500, World.screenSize.height - 170);
-		background = new Background(B_HEIGHT);
-		background.setSpeed(obstracleSpeed);
-		keyListenerPlayer = new KeyListenerPlayer(player);
-		this.addKeyListener(keyListenerPlayer);
-
+		
 		timer = new Timer(player, sprites, background, this);
-		timer.start();
 
 		colisionThread = new CollisionThread(this);
 		colisionThread.start();
 		
 		stopwatch = new stopwatchThread(this);
-		stopwatch.start();
 		
 		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
 		
 		lives = new JLabel[3];
 		lives[0] = life1;
 		lives[1] = life2;
 		lives[2] = life3;
+		
+		InputStream panelResource = Rock.class.getResourceAsStream("/img/panel.png");
+	    Image imagePanel;
+		imagePanel = ImageIO.read(panelResource);
+		Image imagePanel2 = imagePanel.getScaledInstance(1000, 40, Image.SCALE_DEFAULT);
+		
+		
+		panel = new JPanel(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(imagePanel2, 0, 0, null);
+				
+			}
+		};
+		panel.setBounds(0, 0, 1000, 40);
+		add(panel);
+		panel.setLayout(null);
+		
+		timeLeft = new JLabel("0");
+		timeLeft.setForeground(Color.white);
+		timeLeft.setFont(new Font(timeLeft.getName(), Font.PLAIN, 20));
+		timeLeft.setBounds(924, 5, 66, 32);
+		panel.add(timeLeft);
+		
+		JLabel startLabel = new JLabel("3", SwingConstants.CENTER);
+		startLabel.setForeground(Color.white);
+		startLabel.setBounds(460, World.screenSize.height/2 - 40, 100,80);
+		startLabel.setFont(new Font(startLabel.getName(), Font.PLAIN, 50));
+		this.add(startLabel);
+		
+		new Thread(){
+			 public void run() {
+				try {
+					sleep(500);
+					startLabel.setText("2");
+					board.repaint();
+					sleep(500);
+					startLabel.setText("1");
+					board.repaint();
+					sleep(500);
+					startLabel.setText("GO!");
+					board.repaint();
+					sleep(500);
+					
+					board.remove(startLabel);
+					
+					timer.start();
+					questionTimer.start();
+					stopwatch.start();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
+		}.start();
 	}
 
 	@Override
@@ -105,37 +169,90 @@ public class Board extends JPanel {
 
 	private void doDrawing(Graphics g) {
 		
-		timeLeft.setText(Integer.toString(numberOfLifeSeconds));
+		timeLeft.setText(timeDisplay(numberOfLifeSeconds));
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(background.getImage(), background.getXPosition(), background.getYPosition(), this);
 		g2d.drawImage(player.getImage(), player.getXPosition(), player.getYPosition(), this);
 
 		if(!sprites.isEmpty()){
-			for (Object sprite : sprites) {
-				g2d.drawImage(((Sprite) sprite).getImage(), ((Sprite) sprite).getXPosition(),
-						((Sprite) sprite).getYPosition(), this);
+			int size = sprites.size();
+			for (int i = 0; i < size; i++) {
+				Sprite sprite = sprites.get(i);
+				g2d.drawImage( sprite.getImage(), sprite.getXPosition(),
+						 sprite.getYPosition(), this);
+				if(size != sprites.size()){
+					size = sprites.size();
+					i--;
+				}
 			}
 		}
 		
-		collectedCarrotsLabel.setText("" + collectedCarrots);
+		if(questionActive && run){
+			try {
+				InputStream resource = Carrot.class.getResourceAsStream("/img/question_border.png");
+				Image image = ImageIO.read(resource);
+				g.drawImage(image, 181, ((int)World.screenSize.getHeight()/2)-291, null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		if(!run){
+			try {
+				InputStream resource = Carrot.class.getResourceAsStream("/img/score_border.png");
+				Image image = ImageIO.read(resource);
+				g.drawImage(image, 181, ((int)World.screenSize.getHeight()/2)-291, null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void createObstacle() {
 		int randomPosition = (int) (Math.random() * 700);
-		int randomObstacle = (int) (Math.random() * 2)+1;
+		int randomObstacle = (int) (Math.random() * 30)+1;
 		
-		if(randomObstacle == 1){
-			Rock rock = new Rock(randomPosition, 0);
+		while(randomPosition - lastRandomPosition < 50 && randomPosition - lastRandomPosition > -50){
+			randomPosition = (int) (Math.random() * 700);
+		}
+		lastRandomPosition = randomPosition;
+		
+		if(carrotOnScreen > 0){
+			Rock rock = new Rock(randomPosition, -100);
+			rock.setSpeed(obstracleSpeed);
+
+			sprites.add(rock);
+			carrotOnScreen--;
+		}
+		else if(rockNumber == 4){
+			Carrot carrot = new Carrot(randomPosition, -100);
+			carrot.setSpeed(obstracleSpeed);
+			
+			sprites.add(carrot);
+			carrotOnScreen = 2;
+		}
+		else if(randomObstacle <= 14){
+			Rock rock = new Rock(randomPosition, -100);
 			rock.setSpeed(obstracleSpeed);
 
 			sprites.add(rock);
 		}
-		if(randomObstacle == 2){
-			Carrot carrot = new Carrot(randomPosition, 0);
+		else if(randomObstacle <= 16){
+			EasterEggs egg = new EasterEggs(randomPosition, -100);
+			egg.setSpeed(obstracleSpeed);
+			
+			sprites.add(egg);
+		}
+		else {
+			Carrot carrot = new Carrot(randomPosition, -100);
 			carrot.setSpeed(obstracleSpeed);
 			
 			sprites.add(carrot);
+			carrotOnScreen = 2;
 		}
+		
 	}
 
 	public boolean checkCollisions() {
@@ -148,40 +265,76 @@ public class Board extends JPanel {
 
 						if(player.getCurrentLives() == 1){
 							player.decrementLive();
-							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
+							InputStream resource = Rock.class.getResourceAsStream("/img/life_empty.png");
+							Image imageVari;
+							try {
+								imageVari = ImageIO.read(resource);
+								imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
+								ImageIcon ii = new ImageIcon(imageVari);
+								lives[player.getCurrentLives()].setIcon(ii);
+							} catch (IOException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+							run = false;
+							
 							//Stop gameloop
 							timer.endLoop();
 							questionTimer.stopQuestions();
+							stopwatch.toggleBool();
 							
-							newGameButton = new JButton("Neues Spiel");
-							newGameButton.setBounds(425, 400, 150, 40);
-							newGameButton.addActionListener(new ActionListener() {
-								
-								@Override
-								public void actionPerformed(ActionEvent e) {
-									try {
-										newGame();
-									} catch (IOException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
-									}
-								}
-							});
-							this.add(newGameButton);
+							highscore.activateHighscorePanelAfterGame(numberOfSeconds);
+							highscore.setFocusable(true);
+							highscore.requestFocus();
+							this.repaint();
 							
 							return false;
 						}
 						else{
 							player.decrementLive();
-							lives[player.getCurrentLives()].setIcon(new ImageIcon("img/life_empty.png"));
-							sprites.remove(i);
+							InputStream resource = Rock.class.getResourceAsStream("/img/life_empty.png");
+							Image imageVari;
+							try {
+								imageVari = ImageIO.read(resource);
+								imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
+								ImageIcon ii = new ImageIcon(imageVari);
+								lives[player.getCurrentLives()].setIcon(ii);
+							} catch (IOException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+							removeSprite(i);
 							i--;
 							return true;
 						}
 					}
-					if(sprites.get(i).getClass() == Carrot.class){
-						collectedCarrots++;
-						sprites.remove(i);
+					else if(sprites.get(i).getClass() == Carrot.class){
+						//Erhöhung der Lebenszeit
+						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/(World.screenSize.getHeight()/200))*4)/100)+0.5);
+						increaseNumberOfLifeSeconds(time);
+						removeSprite(i);
+						i--;
+					}
+					
+					else if(sprites.get(i).getClass() == EasterEggs.class){
+						increaseNumberOfLifeSeconds(3);
+						JLabel newsLabel = new JLabel("+ 3 Sekunden!");
+						newsLabel.setForeground(Color.WHITE);
+						newsLabel.setBounds(300, World.screenSize.height/2 - 40, 400,80);
+						newsLabel.setFont(new Font(newsLabel.getName(), Font.PLAIN, 50));
+						this.add(newsLabel);
+						new Thread(){
+							public void run(){
+								try {
+									sleep(1000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								board.remove(newsLabel);
+							}
+						}.start();
+						removeSprite(i);
 						i--;
 					}
 				}
@@ -196,78 +349,43 @@ public class Board extends JPanel {
 		setVisible(true);
 		setLayout(null);
 		
-		JLabel carrots = new JLabel("");
-		InputStream resource = Rock.class.getResourceAsStream("/img/carrot.png");
-		Image imageVari = ImageIO.read(resource);
-		ImageIcon ii = new ImageIcon(imageVari);
-		carrots.setIcon(ii);
-		carrots.setBounds(960, 11, 27, 75);
-		add(carrots);
-
-		collectedCarrotsLabel = new JLabel("0");
-		collectedCarrotsLabel.setFont(new Font(collectedCarrotsLabel.getFont().getName(), Font.PLAIN, 40));
-		collectedCarrotsLabel.setBounds(907, 30, 100, 30);
-		add(collectedCarrotsLabel);
+		//Create Player with KeyListener
+		player = new Player(454, World.screenSize.height - 220);
+		keyListenerPlayer = new KeyListenerPlayer(player);
+		this.addKeyListener(keyListenerPlayer);
 		
+		//Create background
+		background = new Background(B_HEIGHT);
+		background.setSpeed(obstracleSpeed);
+		
+		//Create Highscore panel
+		highscore = new HighscorePanel(board);
+		board.add(highscore);
+				
 		life1 = new JLabel("");
-		resource = Rock.class.getResourceAsStream("/img/life_full.png");
-		imageVari = ImageIO.read(resource);
-		ii = new ImageIcon(imageVari);
+		InputStream resource = Board.class.getResourceAsStream("/img/life_full.png");
+		Image imageVari = ImageIO.read(resource);
+		imageVari  = imageVari.getScaledInstance(40, 35, Image.SCALE_DEFAULT);
+		ImageIcon ii = new ImageIcon(imageVari);
 		life1.setIcon(ii);
-		life1.setBounds(10, 11, 75, 65);
+		life1.setBounds(5, 3, 40, 35);
 		add(life1);
 
 		life2 = new JLabel("");
 		life2.setIcon(ii);
-		life2.setBounds(95, 11, 75, 65);
+		life2.setBounds(50, 3, 40, 35);
 		add(life2);
 
 		life3 = new JLabel("");
 		life3.setIcon(ii);
-		life3.setBounds(180, 11, 75, 65);
+		life3.setBounds(95, 3, 40, 35);
 		add(life3);
-		
-		timeLeft = new JLabel("0");
-		timeLeft.setBounds(496, 38, 46, 22);
-		add(timeLeft);
 		
 		questPanel = new QuestionGUI();
 	}
 	
-	public void newGame() throws IOException{
-		collectedCarrots = 0;
-		numberOfSeconds = 0;
-		numberOfLifeSeconds = 10;
-		
-		this.remove(newGameButton);
-		
-		InputStream resource1 = Rock.class.getResourceAsStream("/img/life_full.png");
-		Image imageVari = ImageIO.read(resource1);
-		ImageIcon ii = new ImageIcon(imageVari);
-		
-		life1.setIcon(ii);
-		life2.setIcon(ii);
-		life3.setIcon(ii);
-		
-		run = true;
-		sprites = new ArrayList<Sprite>();
-
-		this.removeKeyListener(keyListenerPlayer);
-		player = new Player(500,  World.screenSize.height - 170);
-		keyListenerPlayer = new KeyListenerPlayer(player);
-		this.addKeyListener(keyListenerPlayer);
-
-		timer = new Timer(player, sprites, background, this);
-		timer.start();
-
-		colisionThread = new CollisionThread(this);
-		colisionThread.start();
-		
-		stopwatch = new stopwatchThread(this);
-		stopwatch.start();
-		
-		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
+	public void newGame(){		
+		world.createNewBoard();
 	}
 	
 	private void pauseGame() {
@@ -276,15 +394,48 @@ public class Board extends JPanel {
 	}
 	
 	private void continueGame() {
-		timer = new Timer(player, sprites, background, this);
-		timer.start();
-		
-		stopwatch.toggleBool();
-		
-		questionTimer = new QuestionTimer(this);
-		questionTimer.start();
-		
 		player.setDirection(Direction.Top);
+		
+		questionActive = false;
+		
+		JLabel wait = new JLabel("3", SwingConstants.CENTER);
+		
+		board.repaint();
+		wait.setBounds(460, World.screenSize.height/2 - 40, 100,80);
+		wait.setForeground(Color.white);
+		wait.setFont(new Font(wait.getName(), Font.PLAIN, 50));
+		this.add(wait);
+		
+		new Thread(){
+			 public void run() {
+				try {
+					sleep(500);
+					wait.setText("2");
+					board.repaint();
+					sleep(500);
+					wait.setText("1");
+					board.repaint();
+					sleep(500);
+					wait.setText("GO!");
+					board.repaint();
+					sleep(500);
+					
+					board.remove(wait);
+					
+					timer = new Timer(player, sprites, background, board);
+					timer.start();
+					
+					stopwatch = new stopwatchThread(board);
+					stopwatch.start();
+					
+					questionTimer = new QuestionTimer(board);
+					questionTimer.start();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
+		}.start();
 	}
 	
 	public void continueAfterQuestEvent() {
@@ -294,6 +445,8 @@ public class Board extends JPanel {
 	
 	public void doQuestionEvent() {
 		pauseGame();
+		
+		questionActive = true;
 		
 		questPanel.askQuestion(this);
 		this.add(questPanel);
@@ -320,9 +473,14 @@ public class Board extends JPanel {
 	}
 	public void checkOutOfTime () {
 		if(numberOfLifeSeconds <= 0) {
-			
-			pauseGame();
+
+			run = false;
 			stopAllThreads();
+			
+			highscore.activateHighscorePanelAfterGame(numberOfSeconds);
+			highscore.setFocusable(true);
+			highscore.requestFocus();
+			
 		}
 	}
 	
@@ -330,5 +488,48 @@ public class Board extends JPanel {
 		questionTimer.stopQuestions();
 		timer.endLoop();
 		stopwatch.toggleBool();
+	}
+	
+	public void setDifficult(){
+		if(currentDifficult < difficultArray.length-1){
+			if(numberOfSeconds > difficultArray[currentDifficult+1]){				
+				obstracleSpeed = obstracleSpeed + 1;
+				System.out.println("Raise speed to: " + obstracleSpeed);
+				background.setSpeed(obstracleSpeed);
+				for(int i = 0; i < sprites.size(); i++){
+					sprites.get(i).setSpeed(obstracleSpeed);
+				}
+				player.setSpeed(player.getSpeed() + 1);
+				
+				currentDifficult++;
+			}
+		}
+	}
+	
+	private void removeSprite(int index){
+		isSpriteRemoved = true;
+		sprites.remove(index);
+	}
+	
+	public boolean isSpriteRemove(){
+		if(isSpriteRemoved){
+			isSpriteRemoved = false;
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public String timeDisplay(int seconds){
+		String temp = "" ;
+		if(seconds%60 == 0){
+			temp = "00" ;
+		} else if(seconds%60 < 10){
+			temp = "0" + seconds%60 ;
+		} else {
+			temp = "" + seconds%60;
+		}
+		
+		return "0" + (int)seconds/60 + " : " + temp;
 	}
 }

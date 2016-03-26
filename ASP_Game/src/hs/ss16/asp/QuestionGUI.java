@@ -1,5 +1,6 @@
 package hs.ss16.asp;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
@@ -24,25 +25,32 @@ public class QuestionGUI extends JPanel {
 		questionHandler = new QuestionHandler();
 		
 		questionLabel = new JLabel("",SwingConstants.CENTER);
+		questionLabel.setForeground(Color.white);
 		answer1Label = new JLabel();
+		answer1Label.setForeground(Color.white);
 		answer2Label = new JLabel();
+		answer2Label.setForeground(Color.white);
 		answer3Label = new JLabel();
+		answer3Label.setForeground(Color.white);
 		answer4Label = new JLabel();
+		answer4Label.setForeground(Color.white);
 		
 		this.add(questionLabel,0);
 		this.add(answer1Label,1);
 		this.add(answer2Label,2);
 		this.add(answer3Label,3);
 		this.add(answer4Label,4);
+		
+		this.setOpaque( false ) ;
 	}
 	
 	public void initializeQuestionGUI(Question question) {
 		questionLabel.setText(question.getQuestion());
 
-		answer1Label.setText("	1. " + question.getAnswers().get(0).getAnswerString());
-		answer2Label.setText("	2. " + question.getAnswers().get(1).getAnswerString());
-		answer3Label.setText("	3. " + question.getAnswers().get(2).getAnswerString());
-		answer4Label.setText("	4. " + question.getAnswers().get(3).getAnswerString());
+		answer1Label.setText(" \t\t\t\t	1. " + question.getAnswers().get(0).getAnswerString());
+		answer2Label.setText(" \t\t\t\t	2. " + question.getAnswers().get(1).getAnswerString());
+		answer3Label.setText(" \t\t\t\t 3. " + question.getAnswers().get(2).getAnswerString());
+		answer4Label.setText(" \t\t\t\t 4. " + question.getAnswers().get(3).getAnswerString());
 		
 		setVisible(true);
 	}

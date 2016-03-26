@@ -30,29 +30,29 @@ public class KeyListenerQuestion implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		System.out.println("2" + e.getKeyChar());
 		if(!isAnswered(e)){
+			int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/3)*4)/100)+1.5);
 			if(e.getKeyChar() == '1'){
 				if(answers.get(0).isRight()){
-					//doSomething_____________________________________________________________________
+					board.increaseNumberOfLifeSeconds(time);
 				}
 				board.continueAfterQuestEvent();
 			}
 			else if(e.getKeyChar() == '2'){
 				if(answers.get(1).isRight()){
-					//doSomething_____________________________________________________________________
+					board.increaseNumberOfLifeSeconds(time);
 				}
 				board.continueAfterQuestEvent();
 			}
 			else if(e.getKeyChar() == '3'){
 				if(answers.get(2).isRight()){
-					//doSomething_____________________________________________________________________
+					board.increaseNumberOfLifeSeconds(time);
 				}
 				board.continueAfterQuestEvent();
 			}
 			else if(e.getKeyChar() == '4'){
 				if(answers.get(3).isRight()){
-					//doSomething_____________________________________________________________________
+					board.increaseNumberOfLifeSeconds(time);
 				}
 				board.continueAfterQuestEvent();
 			}

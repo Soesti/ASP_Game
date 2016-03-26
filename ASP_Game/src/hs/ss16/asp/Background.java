@@ -36,7 +36,7 @@ public class Background extends Sprite {
     @Override
     public void calculatePosition() {
 
-        if(this.yPosition >= -40){
+        if(this.yPosition >= -125){
             this.yPosition = -(height /2);
         }
 
