@@ -310,7 +310,7 @@ public class Board extends JPanel {
 					}
 					else if(sprites.get(i).getClass() == Carrot.class){
 						//Erh�hung der Lebenszeit
-						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/(World.screenSize.getHeight()/200))*4)/100)+0.5);
+						int time = (int)(((((World.screenSize.getHeight() / board.obstracleSpeed)/(World.screenSize.getHeight()/200))*4)/100)+0.7);
 						increaseNumberOfLifeSeconds(time);
 						removeSprite(i);
 						i--;
