@@ -71,16 +71,17 @@ public class QuestionGUI extends JPanel {
 	
 	public void setAnswer(boolean answerRight){
 		if(answerRight){
-			questionLabel.setText("Richtig!");
-			answer1Label.setText("");
-			answer2Label.setText("");
-			answer3Label.setText("");
-			answer4Label.setText("");
-			this.repaint();
+			questionLabel.setText("Richtig!");		
 		}
 		else{
 			questionLabel.setText("Falsch!");
 		}
+		
+		answer1Label.setText("");
+		answer2Label.setText("");
+		answer3Label.setText("");
+		answer4Label.setText("");
+		this.repaint();
 		
 		new Thread(){
 			 public void run() {
