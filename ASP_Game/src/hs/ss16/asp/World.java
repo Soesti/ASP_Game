@@ -33,7 +33,7 @@ public class World extends JFrame {
 		add(board);
 		setSize(1000, screenSize.height - 50);
 		setResizable(false);
-		setTitle("BunnyWars");
+		setTitle("BunnyQuest");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);

@@ -1,5 +1,6 @@
 package hs.ss16.asp;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,6 +58,7 @@ public class HighscorePanel extends JPanel {
 		loadScores();
 		
 		headline = new JLabel("Highscore", SwingConstants.CENTER);
+		headline.setFont(new Font(headline.getName(), Font.PLAIN, 16));
 		add(headline);
 		
 		for(int i = 0; i < scoreLines.length; i++) {
@@ -95,6 +97,7 @@ public class HighscorePanel extends JPanel {
 				line = bufferedReader.readLine();
 				loadScoreValuesFromLine(line, i);
 				loadedScores[i] = new JLabel(convertToLabelString(scoreNames[i], scoreTimes[i]), SwingConstants.CENTER);
+				loadedScores[i].setFont(new Font(loadedScores[i].getName(), Font.PLAIN, 16));
 			}
 		} catch(Exception e) {
 			System.out.println("Error while reading highscore file line by line:" + e.getMessage()); 
