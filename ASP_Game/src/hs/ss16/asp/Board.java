@@ -35,7 +35,7 @@ public class Board extends JPanel {
 	private stopwatchThread stopwatch;
 	private QuestionTimer questionTimer;
 	
-	private int[] difficultArray = {0, 15, 30, 45, 60 , 75 };
+	private int[] difficultArray = {0, 25, 35, 55, 70 , 90 };
 	private int currentDifficult = 0;
 	
 	Board board = this;
@@ -292,6 +292,7 @@ public class Board extends JPanel {
 						}
 						else{
 							player.decrementLive();
+							player.setInvisible();
 							InputStream resource = Rock.class.getResourceAsStream("/img/life_empty.png");
 							Image imageVari;
 							try {
