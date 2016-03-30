@@ -29,19 +29,19 @@ public class QuestionGUI extends JPanel {
 		
 		questionLabel = new JLabel("",SwingConstants.CENTER);
 		questionLabel.setForeground(Color.white);
-		questionLabel.setFont(new Font(questionLabel.getName(), Font.PLAIN, 16));
+		questionLabel.setFont(new Font(questionLabel.getName(), Font.PLAIN, 13));
 		answer1Label = new JLabel();
 		answer1Label.setForeground(Color.white);
-		answer1Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 16));
+		answer1Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 13));
 		answer2Label = new JLabel();
 		answer2Label.setForeground(Color.white);
-		answer2Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 16));
+		answer2Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 13));
 		answer3Label = new JLabel();
 		answer3Label.setForeground(Color.white);
-		answer3Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 16));
+		answer3Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 13));
 		answer4Label = new JLabel();
 		answer4Label.setForeground(Color.white);
-		answer4Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 16));
+		answer4Label.setFont(new Font(questionLabel.getName(), Font.PLAIN, 13));
 		
 		this.add(questionLabel,0);
 		this.add(answer1Label,1);
