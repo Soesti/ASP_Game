@@ -23,7 +23,6 @@ public class QuestionHandler {
 			getQuestionsFromXML();
 		}
 		int randomNumber = (int) (Math.random() * questions.size());
-		System.out.println(randomNumber);
 		return questions.get(randomNumber);
 	}
 

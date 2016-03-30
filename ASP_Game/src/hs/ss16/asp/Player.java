@@ -11,6 +11,8 @@ public class Player extends Sprite {
 	
 	private Direction direction = Direction.Top;
 	private int lives;
+	private boolean visible = true;
+	private int invisibleTime = 10;
 	
 	private Image[] images;
 
@@ -18,17 +20,20 @@ public class Player extends Sprite {
 		super(xPosition, yPosition);
 		
 		//Load all images
-		images = new Image[3];
+		images = new Image[4];
 		
 		try {
 			InputStream resource1 = Rock.class.getResourceAsStream("/img/player.png");
-			images[0] = this.image = ImageIO.read(resource1);
+			images[0] = ImageIO.read(resource1);
 			
 			InputStream resource2 = Rock.class.getResourceAsStream("/img/player_left.png");
-			images[1] = this.image = ImageIO.read(resource2);
+			images[1] = ImageIO.read(resource2);
 			
 			InputStream resource3 = Rock.class.getResourceAsStream("/img/player_right.png");
-			images[2] = this.image = ImageIO.read(resource3);
+			images[2] = ImageIO.read(resource3);
+			
+			InputStream resource4 = Player.class.getResourceAsStream("/img/player_hit.png");
+			images[3] = ImageIO.read(resource4);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -44,20 +49,31 @@ public class Player extends Sprite {
 	
 	public void setDirection(Direction dir){
 		this.direction = dir;
-
-		if(Direction.Left == dir){
-			image = images[1];
-		}
-		else if(Direction.Right == dir){
-			image = images[2];
-		}
-		else{
-			image = images[0];
+		if(visible){
+			if(Direction.Left == dir){
+				image = images[1];
+			}
+			else if(Direction.Right == dir){
+				image = images[2];
+			}
+			else{
+				image = images[0];
+			}
 		}
 	}
 	
 	@Override
 	public void calculatePosition(){
+		if(visible == false){
+			if(invisibleTime == 0){
+				visible = true;
+				setDirection(direction);
+			}
+			else{
+				invisibleTime--;
+			}
+		}
+		
 		if(direction == Direction.Left){
 			if(xPosition - speed > 0){
 				xPosition = xPosition - speed;
@@ -84,6 +100,11 @@ public class Player extends Sprite {
 	
 	public void setLives(int lives){
 		this.lives = lives;
+	}
+	
+	public void setInvisible(){
+		visible = false;
+		image = images[3];
 	}
 
 }
