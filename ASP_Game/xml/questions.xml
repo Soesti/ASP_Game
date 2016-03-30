@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="iso8859-1"?>
+<questions>
+	<question text="Weswegen sind die Osterinseln so bekannt?" id="1">
+		<answer text="Polynesischer Tempel"></answer>
+		<answer text="Monumentalen Steinskulpturen" right="true">
+		</answer>
+		<answer text="Einzigartige Flora und Fauna"/>
+		<answer text="Extreme Temperaturschwankungen"/>
+	</question>
+	<question text="Vom wem stammt das Lied Stups der kleine Osterhase?" id="2">
+		<answer text="Detlef Jöcker" />
+		<answer text="Daniel Kallauch" />
+		<answer text="Rolf Zuckowski" right="true" /> 
+		<answer text="Volker Rosin" />
+	</question>
+	<question text="Was ist laut dem Christentum an Ostern passiert?" id="3">
+		<answer text="Auferstehung Jesu Christi" right="true"/>
+		<answer text="Geburt Jesu Christi"></answer>
+		<answer text="Schwangerschaft Maria"></answer>
+		<answer text="Teilung des Meeres durch Jesu Christi"/>
+	</question>
+	<question text="Wie wird das Osterdatum festgelegt?" id="4">
+		<answer text="Festes Datum im Jahr"/>
+		<answer text="Vom Schaltjahr abhängig errechnet"/>
+		<answer text="Nach dem Lunisorkalender" right="true"/>
+		<answer text="Im gregorianischen Kalender mit dem Schaltjahr errechnet" />
+	</question>
+	<question text="Wozu gehören Kaninchen" id="5">
+		<answer text="Nagetiere"/>
+		<answer text="Hasenartige" right="true"/>
+		<answer text="Ovipare"/>
+		<answer text="Karnivoren" />
+	</question>
+	<question text="Wie lautet der lateinische Name für Ostern" id="6">
+		<answer text="Pessach"/>
+		<answer text="Pascha" right="true"/>
+		<answer text="Poschera"/>
+		<answer text="Pussacha" />
+	</question>
+	<question text="Was ist die Hauptstadt von Südkorea?" id="7">
+		<answer text="Rangun"/>
+		<answer text="Bangkok"/>
+		<answer text="Seoul" right="true"/>
+		<answer text="Tumbuktu" />
+	</question>
+	<question text="Welche dieser Obstsorten gehört nicht zum Steinobst?" id="8">
+		<answer text="Quitte" right="true"/>
+		<answer text="Zwetschge"/>
+		<answer text="Kirsche"/>
+		<answer text="Nektarine" />
+	</question>
+	<question text="Wie heißt ein mehrgängiges Festessen auf keinen Fall?" id="9">
+		<answer text="opulentes Mahl"/>
+		<answer text="lukullisches Mahl"/>
+		<answer text="kulturales Mahl" right="true"/>
+		<answer text="kulinarisches Mahl" />
+	</question>
+	<question text="In welcher Rolle kennt man Gustaf Gründgens?" id="14">
+		<answer text="Mephisto" right="true"/>
+		<answer text="König Lear"/>
+		<answer text="Winnetou"/>
+		<answer text="Dr. Faust" />
+	</question>
+	<question text="Die Zweige welchen Baumes zeigt die Flagge der UNO?" id="10">
+		<answer text="Lorbeerbaum"/>
+		<answer text="Ahorn"/>
+		<answer text="Olivenbaum" right="true"/>
+		<answer text="Eiche" />
+	</question>
+	<question text="Zu welcher deutschen Stadt gehört die 'Pfaueninsel'?" id="11">
+		<answer text="Trier"/>
+		<answer text="Hamburg"/>
+		<answer text="Konstanz"/>
+		<answer text="Berlin" right="true"/>
+	</question>
+	<question text="Wie nennt man einen flachen, an der Unterkante oft halbrund geformter Dachziegel?" id="12">
+		<answer text="Hundeschwanz" right="true"/>
+		<answer text="Biberschwanz"/>
+		<answer text="Kuhschwanz"/>
+		<answer text="Mauseschwanz" />
+	</question>
+	<question text="Welche Gruppe gehörte nicht zur germanischen Götterwelt?" id="13">
+		<answer text="Nornen"/>
+		<answer text="Tantaliden" right="true"/>
+		<answer text="Asen"/>
+		<answer text="Wanen" />
+	</question>
+	<question text="Für wen wurde 1888 der erste Führerschein der Welt ausgestellt?" id="15">
+		<answer text="Carl Benz" right="true"/>
+		<answer text="Kaiser Wilhelm" />
+		<answer text="Rudolf Diesel"/>
+		<answer text="Gottlieb Daimler" />
+	</question>
+	<question text="Die Wissenschaft von der Ausmessung und Abbildung der Erdoberfläche nennt man..?" id="16">
+		<answer text="Kartografie"/>
+		<answer text="Kosmologie" />
+		<answer text="Geodäsie" right="true"/>
+		<answer text="Philosophie" />
+	</question>
+	<question text="Welche Stadt ist die Hauptstadt von Kalifornien?" id="17">
+		<answer text="Utha"/>
+		<answer text="Sacramento" right="true"/>
+		<answer text="Santa Anna"/>
+		<answer text="Okland" />
+	</question>
+	<question text="Als was arbeitet Bob Dylan Nebenberuflich?" id="18">
+		<answer text="Winzer"  right="true"/>
+		<answer text="Schuster"/>
+		<answer text="Geigenbauer"/>
+		<answer text="Osterhase" />
+	</question>
+	<question text="Welche Farbe haben alle Marienkäfer direkt nach ihrer Geburt?" id="19">
+		<answer text="Gelb" right="true"/>
+		<answer text="Rot"/>
+		<answer text="Orange"/>
+		<answer text="Braun" />
+	</question>
+	<question text="Unter welchem Namen wird das Waschmittel 'Persil' in Frankreich verkauft?" id="20">
+		<answer text="Dixan"/>
+		<answer text="Wippa" />
+		<answer text="Persil"/>
+		<answer text="Le Chat" right="true"/>
+	</question>
+	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger von McDonald's?" id="21">
+		<answer text="98"/>
+		<answer text="326"/>
+		<answer text="2351"/>
+		<answer text="178"  right="true"/>
+	</question>
+	<question text="Wie lange wartet ein normaler Autofahrer in seinem Leben vor roten Ampeln?" id="22">
+		<answer text="2 Wochen" right="true"/>
+		<answer text="1 Monat" />
+		<answer text="4 Tage"/>
+		<answer text="1,5 Monate" />
+	</question>
+	<question text="Was ist der häufigste Vorname auf der Welt?" id="23">
+		<answer text="Yin"/>
+		<answer text="Yang"/>
+		<answer text="Peter"/>
+		<answer text="Mohammed"  right="true"/>
+	</question>
+	<question text="Indianer führten nur bei schönem Wetter Krieg, weil..." id="24">
+		<answer text="Sie bei Regen immer barfuß im Matsch ausgerutscht sind!"/>
+		<answer text="Sie den Regen nicht mochten! "/>
+		<answer text="Der Regen den Leim, den sie für die Pfeile benutzten, aufgelöst hat!"  right="true"/>
+		<answer text="Bei Regen die Pfeile nicht so weit fliegen! " />
+	</question>
+	<question text="Wie viel Prozent der Wettervorhersagen sind korrekt?" id="25">
+		<answer text="78"/>
+		<answer text="87"  right="true"/>
+		<answer text="53"/>
+		<answer text="99" />
+	</question>
+	
+	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere. Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
+		<answer text="nur etwa 50 cm"/>
+		<answer text="bis zu 6 Meter"  right="true"/>
+		<answer text="rund 1 Meter"/>
+		<answer text="maximal 10 Meter" />
+	</question>
+	
+	<question text="Die kleinsten Säugetiere der Welt sind die Etruskerspitzmaus und die...?" id="27">
+		<answer text="Europäische BulldogFledermaus"/>
+		<answer text="Zwergfledermaus" />
+		<answer text="Schweinsnasenfledermaus"  right="true"/>
+		<answer text="Haftscheibenfledermaus" />
+	</question>
+	
+	<question text="Wie dick kann die Haut von Walhaien, den Rekordhaltern in diesem Bereich, werden?" id="28">
+		<answer text="30 cm"/>
+		<answer text="15 cm"  right="true"/>
+		<answer text="25 cm"/>
+		<answer text="20 cm" />
+	</question>
+	
+	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet. Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
+		<answer text="200m²"   right="true"/>
+		<answer text="2m²"/>
+		<answer text="20m²"/>
+		<answer text="200m²" />
+	</question>
+	
+	<question text="Wo befinden sich die 'Langerhans-Inseln'?" id="30">
+		<answer text="In der Südsee"/>
+		<answer text="auf dem Mars" />
+		<answer text="Bauchspeicheldrüse"  right="true"/>
+		<answer text="im menshclichen Gehirn" />
+	</question>
+	
+						<question text="Wie lautet offiziell der vollständige Name der 'Barbie'-Puppe?" id="31">
+		<answer text="Barbara Millicent Roberts"  right="true"/>
+		<answer text="Bartholomea Florence Hume" />
+		<answer text="Babette Julia Smith"/>
+		<answer text="Barberina Corinne Locke" />
+	</question>
+	
+	<question text="Wie nennt man die Leidenschaft für das Sammeln von historischen Wertpapieren?" id="32">
+		<answer text="Xenophilie"/>
+		<answer text="Llipophilie" />
+		<answer text="Scripophilie" right="true"/>
+		<answer text="Bibliophilie" />
+	</question>
+	
+	<question text="Fladenbrötchen aus Roggen-Weizen-Sauerteig und Hefe kennt man auch als ..?" id="33">
+		<answer text="Nocken"/>
+		<answer text="Berliner" />
+		<answer text="Vinschgauer"  right="true" />
+		<answer text="Puffer" />
+	</question>
+	
+	<question text="Wie heißt das Klima, bei dem die potenzielle Verdunstung größer ist als der Niederschlag?" id="34">
+		<answer text="arides Klima" right="true"/>
+		<answer text="humides Klima"  />
+		<answer text="maritimes Klima"/>
+		<answer text="nivales Klima" />
+	</question>
+	
+	<question text="Von welchem Vitamin ist Betacarotin die Vorstufe?" id="35">
+		<answer text="Vitamin B2"/>
+		<answer text="Vitamin D"  />
+		<answer text="Vitamin A" right="true"/>
+		<answer text="Vitamin E" />
+	</question>
+	
+	<question text="Welcher bekannter französischer Parfümeur gilt als Gründer der modernen Parfümbranche?" id="36">
+		<answer text="Jean Carles"/>
+		<answer text="Pierre Bourdon" />
+		<answer text="Ernest Beaux"/>
+		<answer text="François Coty" right="true" />
+	</question>
+	
+	<question text="Der berühmte Wein 'Sassicaia' stammt aus welcher Region in Italien?" id="37">
+		<answer text="Piemont"/>
+		<answer text="Marken" />
+		<answer text="Toskana"  right="true"/>
+		<answer text="Umbrien" />
+	</question>
+	
+	<question text="Nach Grönland ist die zweitgrößte Insel der Erde ..?" id="38">
+		<answer text="Sizilien"/>
+		<answer text="Island"  />
+		<answer text="Neuguinea" right="true"/>
+		<answer text="Sri Lanka" />
+	</question>
+	
+	<question text="Wie nennt man den krankhaften Trieb, sich fremdes Eigentum anzueignen?" id="39">
+		<answer text="Kleptomanie" right="true"/>
+		<answer text="Legasthenie"  />
+		<answer text="Astomanie"/>
+		<answer text="Bullinamie" />
+	</question>
+	
+	<question text="Welche grünliche Schicht bildet sich nach einiger Zeit auf Kupfer?" id="40">
+		<answer text="Perina"/>
+		<answer text="Palladina"  />
+		<answer text="Poseidon"/>
+		<answer text="Patina" right="true"/>
+	</question>
+	
+</questions>
