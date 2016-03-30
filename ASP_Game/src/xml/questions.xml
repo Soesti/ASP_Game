@@ -152,4 +152,109 @@
 		<answer text="99" />
 	</question>
 	
+	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere. Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
+		<answer text="nur etwa 50 cm"/>
+		<answer text="bis zu 6 Meter"  right="true"/>
+		<answer text="rund 1 Meter"/>
+		<answer text="maximal 10 Meter" />
+	</question>
+	
+	<question text="Die kleinsten Säugetiere der Welt sind die Etruskerspitzmaus und die...?" id="27">
+		<answer text="Europäische BulldogFledermaus"/>
+		<answer text="Zwergfledermaus" />
+		<answer text="Schweinsnasenfledermaus"  right="true"/>
+		<answer text="Haftscheibenfledermaus" />
+	</question>
+	
+	<question text="Wie dick kann die Haut von Walhaien, den Rekordhaltern in diesem Bereich, werden?" id="28">
+		<answer text="30 cm"/>
+		<answer text="15 cm"  right="true"/>
+		<answer text="25 cm"/>
+		<answer text="20 cm" />
+	</question>
+	
+	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet. Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
+		<answer text="200m²"   right="true"/>
+		<answer text="2m²"/>
+		<answer text="20m²"/>
+		<answer text="200m²" />
+	</question>
+	
+						<question text="Wo befinden sich die 'Langerhans-Inseln'?" id="30">
+		<answer text="In der Südsee"/>
+		<answer text="auf dem Mars" />
+		<answer text="Bauchspeicheldrüse"  right="true"/>
+		<answer text="im menshclichen Gehirn" />
+	</question>
+	
+						<question text="Wie lautet offiziell der vollständige Name der 'Barbie'-Puppe?" id="31">
+		<answer text="Barbara Millicent Roberts"  right="true"/>
+		<answer text="Bartholomea Florence Hume" />
+		<answer text="Babette Julia Smith"/>
+		<answer text="Barberina Corinne Locke" />
+	</question>
+	
+	<question text="Wie nennt man die Leidenschaft für das Sammeln von historischen Wertpapieren?" id="32">
+		<answer text="Xenophilie"/>
+		<answer text="Llipophilie" />
+		<answer text="Scripophilie" right="true"/>
+		<answer text="Bibliophilie" />
+	</question>
+	
+	<question text="Fladenbrötchen aus Roggen-Weizen-Sauerteig und Hefe kennt man auch als ..?" id="33">
+		<answer text="Nocken"/>
+		<answer text="Berliner" />
+		<answer text="Vinschgauer"  right="true" />
+		<answer text="Puffer" />
+	</question>
+	
+	<question text="Wie heißt das Klima, bei dem die potenzielle Verdunstung größer ist als der Niederschlag?" id="34">
+		<answer text="arides Klima" right="true"/>
+		<answer text="humides Klima"  />
+		<answer text="maritimes Klima"/>
+		<answer text="nivales Klima" />
+	</question>
+	
+	<question text="Von welchem Vitamin ist Betacarotin die Vorstufe?" id="35">
+		<answer text="Vitamin B2"/>
+		<answer text="Vitamin D"  />
+		<answer text="Vitamin A" right="true"/>
+		<answer text="Vitamin E" />
+	</question>
+	
+	<question text="Welcher bekannter französischer Parfümeur gilt als Gründer der modernen Parfümbranche?" id="36">
+		<answer text="Jean Carles"/>
+		<answer text="Pierre Bourdon" />
+		<answer text="Ernest Beaux"/>
+		<answer text="François Coty" right="true" />
+	</question>
+	
+	<question text="Der berühmte Wein 'Sassicaia' stammt aus welcher Region in Italien?" id="37">
+		<answer text="Piemont"/>
+		<answer text="Marken" />
+		<answer text="Toskana"  right="true"/>
+		<answer text="Umbrien" />
+	</question>
+	
+	<question text="Nach Grönland ist die zweitgrößte Insel der Erde ..?" id="38">
+		<answer text="Sizilien"/>
+		<answer text="Island"  />
+		<answer text="Neuguinea" right="true"/>
+		<answer text="Sri Lanka" />
+	</question>
+	
+	<question text="Wie nennt man den krankhaften Trieb, sich fremdes Eigentum anzueignen?" id="39">
+		<answer text="Kleptomanie" right="true"/>
+		<answer text="Legasthenie"  />
+		<answer text="Astomanie"/>
+		<answer text="Bullinamie" />
+	</question>
+	
+	<question text="Welche grünliche Schicht bildet sich nach einiger Zeit auf Kupfer?" id="40">
+		<answer text="Perina"/>
+		<answer text="Palladina"  />
+		<answer text="Poseidon"/>
+		<answer text="Patina" right="true"/>
+	</question>
+	
 </questions>
