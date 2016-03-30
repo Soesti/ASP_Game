@@ -12,6 +12,7 @@ public class Player extends Sprite {
 	private Direction direction = Direction.Top;
 	private int lives;
 	private boolean visible = true;
+	private int shouldBlink  = 0;
 	private int invisibleTime = 10;
 	
 	private Image[] images;
@@ -64,10 +65,19 @@ public class Player extends Sprite {
 	
 	@Override
 	public void calculatePosition(){
-		if(visible == false){
+		if(shouldBlink > 0){
 			if(invisibleTime == 0){
-				visible = true;
-				setDirection(direction);
+				shouldBlink--;
+				invisibleTime = 10;
+				if(visible){
+					visible = false;
+					image = images[3];
+					setDirection(direction);
+				}
+				else{
+					visible = true;
+					setDirection(direction);
+				}		
 			}
 			else{
 				invisibleTime--;
@@ -104,6 +114,7 @@ public class Player extends Sprite {
 	
 	public void setInvisible(){
 		visible = false;
+		shouldBlink = 7;
 		image = images[3];
 	}
 
