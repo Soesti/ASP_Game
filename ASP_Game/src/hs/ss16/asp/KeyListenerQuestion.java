@@ -84,7 +84,7 @@ public class KeyListenerQuestion implements KeyListener {
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 }
