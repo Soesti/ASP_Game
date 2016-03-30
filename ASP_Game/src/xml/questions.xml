@@ -73,7 +73,8 @@
 		<answer text="Konstanz"/>
 		<answer text="Berlin" right="true"/>
 	</question>
-	<question text="Wie nennt man einen flachen, an der Unterkante oft halbrund geformter Dachziegel?" id="12">
+	<question text="Wie nennt man einen flachen, an der Unterkante oft </br> 
+	halbrund geformter Dachziegel?" id="12">
 		<answer text="Hundeschwanz" right="true"/>
 		<answer text="Biberschwanz"/>
 		<answer text="Kuhschwanz"/>
@@ -121,13 +122,14 @@
 		<answer text="Persil"/>
 		<answer text="Le Chat" right="true"/>
 	</question>
-	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger von McDonald's?" id="21">
+	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger </br>
+	 von McDonald's?" id="21">
 		<answer text="98"/>
 		<answer text="326"/>
 		<answer text="2351"/>
 		<answer text="178"  right="true"/>
 	</question>
-			<question text="Wie lange wartet ein normaler Autofahrer in seinem Leben vor roten Ampeln?" id="22">
+	<question text="Wie lange wartet ein normaler Autofahrer in seinem Leben vor roten Ampeln?" id="22">
 		<answer text="2 Wochen" right="true"/>
 		<answer text="1 Monat" />
 		<answer text="4 Tage"/>
@@ -152,7 +154,8 @@
 		<answer text="99" />
 	</question>
 	
-	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere. Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
+	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere. </br>
+	 Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
 		<answer text="nur etwa 50 cm"/>
 		<answer text="bis zu 6 Meter"  right="true"/>
 		<answer text="rund 1 Meter"/>
@@ -166,14 +169,15 @@
 		<answer text="Haftscheibenfledermaus" />
 	</question>
 	
-	<question text="Wie dick kann die Haut von Walhaien, den Rekordhaltern in diesem Bereich, werden?" id="28">
+	<question text="Wie dick kann die Haut von Walhaien, den Rekordhaltern </br> in diesem Bereich, werden?" id="28">
 		<answer text="30 cm"/>
 		<answer text="15 cm"  right="true"/>
 		<answer text="25 cm"/>
 		<answer text="20 cm" />
 	</question>
 	
-	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet. Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
+	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet. </br>
+	Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
 		<answer text="200m²"   right="true"/>
 		<answer text="2m²"/>
 		<answer text="20m²"/>
@@ -187,14 +191,14 @@
 		<answer text="im menshclichen Gehirn" />
 	</question>
 	
-						<question text="Wie lautet offiziell der vollständige Name der 'Barbie'-Puppe?" id="31">
+	<question text="Wie lautet offiziell der vollständige Name der 'Barbie'-Puppe?" id="31">
 		<answer text="Barbara Millicent Roberts"  right="true"/>
 		<answer text="Bartholomea Florence Hume" />
 		<answer text="Babette Julia Smith"/>
 		<answer text="Barberina Corinne Locke" />
 	</question>
 	
-	<question text="Wie nennt man die Leidenschaft für das Sammeln von historischen Wertpapieren?" id="32">
+	<question text="Wie nennt man die Leidenschaft für das Sammeln</br> von historischen Wertpapieren?" id="32">
 		<answer text="Xenophilie"/>
 		<answer text="Llipophilie" />
 		<answer text="Scripophilie" right="true"/>
@@ -208,7 +212,7 @@
 		<answer text="Puffer" />
 	</question>
 	
-	<question text="Wie heißt das Klima, bei dem die potenzielle Verdunstung größer ist als der Niederschlag?" id="34">
+	<question text="Wie heißt das Klima, bei dem die potenzielle Verdunstung</br> größer ist als der Niederschlag?" id="34">
 		<answer text="arides Klima" right="true"/>
 		<answer text="humides Klima"  />
 		<answer text="maritimes Klima"/>
