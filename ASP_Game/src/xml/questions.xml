@@ -73,8 +73,7 @@
 		<answer text="Konstanz"/>
 		<answer text="Berlin" right="true"/>
 	</question>
-	<question text="Wie nennt man einen flachen, an der Unterkante oft   
-	halbrund geformter Dachziegel?" id="12">
+	<question text="Wie nennt man einen flachen, an der Unterkante oft halbrund geformter Dachziegel?" id="12">
 		<answer text="Hundeschwanz" right="true"/>
 		<answer text="Biberschwanz"/>
 		<answer text="Kuhschwanz"/>
@@ -122,8 +121,7 @@
 		<answer text="Persil"/>
 		<answer text="Le Chat" right="true"/>
 	</question>
-	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger  
-	 von McDonald's?" id="21">
+	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger von McDonald's?" id="21">
 		<answer text="98"/>
 		<answer text="326"/>
 		<answer text="2351"/>
@@ -154,8 +152,7 @@
 		<answer text="99" />
 	</question>
 	
-	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere.  
-	 Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
+	<question text="Die übelriechendsten Tiere sind zweifellos die Stinktiere. Wie weit können die Tiere ihr stinkendes Sekret versprühen?" id="26">
 		<answer text="nur etwa 50 cm"/>
 		<answer text="bis zu 6 Meter"  right="true"/>
 		<answer text="rund 1 Meter"/>
@@ -176,8 +173,7 @@
 		<answer text="20 cm" />
 	</question>
 	
-	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet.  
-	Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
+	<question text="Der menschliche Dünndarm ist innen sehr stark gefaltet. Welche Fläche würde er ausgebreitet etwa einnehmen?" id="29">
 		<answer text="200m²"   right="true"/>
 		<answer text="2m²"/>
 		<answer text="20m²"/>
