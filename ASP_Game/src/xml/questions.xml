@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="iso8859-1"?>
 <questions>
-	<question text="Weswegen sind die Osterinseln so bekannt" id="1">
+	<question text="Weswegen sind die Osterinseln so bekannt?" id="1">
 		<answer text="Polynesischer Tempel"></answer>
 		<answer text="Monumentalen Steinskulpturen" right="true">
 		</answer>
 		<answer text="Einzigartige Flora und Fauna"/>
 		<answer text="Extreme Temperaturschwankungen"/>
 	</question>
-	<question text="Vom wem stammt das Lied Stups der kleine Osterhase" id="2">
+	<question text="Vom wem stammt das Lied Stups der kleine Osterhase?" id="2">
 		<answer text="Detlef Jöcker" />
 		<answer text="Daniel Kallauch" />
 		<answer text="Rolf Zuckowski" right="true" /> 
 		<answer text="Volker Rosin" />
 	</question>
-	<question text="Was ist laut dem Christentum an Ostern passiert" id="3">
+	<question text="Was ist laut dem Christentum an Ostern passiert?" id="3">
 		<answer text="Auferstehung Jesu Christi" right="true"/>
 		<answer text="Geburt Jesu Christi"></answer>
 		<answer text="Schwangerschaft Maria"></answer>
 		<answer text="Teilung des Meeres durch Jesu Christi"/>
 	</question>
-	<question text="Wie wird das Osterdatum festgelegt" id="4">
+	<question text="Wie wird das Osterdatum festgelegt?" id="4">
 		<answer text="Festes Datum im Jahr"/>
 		<answer text="Vom Schaltjahr abhängig errechnet"/>
 		<answer text="Nach dem Lunisorkalender" right="true"/>
@@ -85,43 +85,43 @@
 		<answer text="Asen"/>
 		<answer text="Wanen" />
 	</question>
-		<question text="Für wen wurde 1888 der erste Führerschein der Welt ausgestellt?" id="15">
+	<question text="Für wen wurde 1888 der erste Führerschein der Welt ausgestellt?" id="15">
 		<answer text="Carl Benz" right="true"/>
 		<answer text="Kaiser Wilhelm" />
 		<answer text="Rudolf Diesel"/>
 		<answer text="Gottlieb Daimler" />
 	</question>
-		<question text="Die Wissenschaft von der Ausmessung und Abbildung der Erdoberfläche nennt man..?" id="16">
+	<question text="Die Wissenschaft von der Ausmessung und Abbildung der Erdoberfläche nennt man..?" id="16">
 		<answer text="Kartografie"/>
 		<answer text="Kosmologie" />
 		<answer text="Geodäsie" right="true"/>
 		<answer text="Philosophie" />
 	</question>
-			<question text="Welche Stadt ist die Hauptstadt von Kalifornien?" id="17">
+	<question text="Welche Stadt ist die Hauptstadt von Kalifornien?" id="17">
 		<answer text="Utha"/>
 		<answer text="Sacramento" right="true"/>
 		<answer text="Santa Anna"/>
 		<answer text="Okland" />
 	</question>
-			<question text="Als was arbeitet Bob Dylan Nebenberuflich" id="18">
+	<question text="Als was arbeitet Bob Dylan Nebenberuflich?" id="18">
 		<answer text="Winzer"  right="true"/>
 		<answer text="Schuster"/>
 		<answer text="Geigenbauer"/>
 		<answer text="Osterhase" />
 	</question>
-			<question text="Welche Farbe haben alle Marienkäfer direkt nach ihrer Geburt?" id="19">
+	<question text="Welche Farbe haben alle Marienkäfer direkt nach ihrer Geburt?" id="19">
 		<answer text="Gelb" right="true"/>
 		<answer text="Rot"/>
 		<answer text="Orange"/>
 		<answer text="Braun" />
 	</question>
-			<question text="Unter welchem Namen wird das Waschmittel 'Persil' in Frankreich verkauft?" id="20">
+	<question text="Unter welchem Namen wird das Waschmittel 'Persil' in Frankreich verkauft?" id="20">
 		<answer text="Dixan"/>
 		<answer text="Wippa" />
 		<answer text="Persil"/>
 		<answer text="Le Chat" right="true"/>
 	</question>
-			<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger von McDonald's?" id="21">
+	<question text="Wie viele Sesamkörnchen befinden sich in Durchschnitt auf einem Burger von McDonald's?" id="21">
 		<answer text="98"/>
 		<answer text="326"/>
 		<answer text="2351"/>
@@ -133,19 +133,19 @@
 		<answer text="4 Tage"/>
 		<answer text="1,5 Monate" />
 	</question>
-			<question text="Was ist der häufigste Vorname auf der Welt?" id="23">
+	<question text="Was ist der häufigste Vorname auf der Welt?" id="23">
 		<answer text="Yin"/>
 		<answer text="Yang"/>
 		<answer text="Peter"/>
 		<answer text="Mohammed"  right="true"/>
 	</question>
-				<question text="Indianer führten nur bei schönem Wetter Krieg, weil..." id="24">
+	<question text="Indianer führten nur bei schönem Wetter Krieg, weil..." id="24">
 		<answer text="Sie bei Regen immer barfuß im Matsch ausgerutscht sind!"/>
 		<answer text="Sie den Regen nicht mochten! "/>
 		<answer text="Der Regen den Leim, den sie für die Pfeile benutzten, aufgelöst hat!"  right="true"/>
 		<answer text="Bei Regen die Pfeile nicht so weit fliegen! " />
 	</question>
-				<question text="Wie viel Prozent der Wettervorhersagen sind korrekt?" id="25">
+	<question text="Wie viel Prozent der Wettervorhersagen sind korrekt?" id="25">
 		<answer text="78"/>
 		<answer text="87"  right="true"/>
 		<answer text="53"/>
@@ -180,7 +180,7 @@
 		<answer text="200m²" />
 	</question>
 	
-						<question text="Wo befinden sich die 'Langerhans-Inseln'?" id="30">
+	<question text="Wo befinden sich die 'Langerhans-Inseln'?" id="30">
 		<answer text="In der Südsee"/>
 		<answer text="auf dem Mars" />
 		<answer text="Bauchspeicheldrüse"  right="true"/>
