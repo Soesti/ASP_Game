@@ -17,8 +17,10 @@ public class QuestionGUI extends JPanel {
 	
 	QuestionHandler questionHandler;
 	KeyListenerQuestion keyListernerQuestion;
+	Board board;
 	
-	public QuestionGUI(){
+	public QuestionGUI(Board board){
+		this.board = board;
 		setBounds(200, ((int)World.screenSize.getHeight()/2)-150,G_Width, G_Height);
 		setLayout(new GridLayout(5,1));
 		
@@ -63,8 +65,34 @@ public class QuestionGUI extends JPanel {
 		
 		board.validate();
 		this.removeKeyListener(keyListernerQuestion);
-		keyListernerQuestion = new KeyListenerQuestion(randomQuestion.getAnswers(), board);
+		keyListernerQuestion = new KeyListenerQuestion(randomQuestion.getAnswers(), board, this);
 		this.addKeyListener(keyListernerQuestion);
+	}
+	
+	public void setAnswer(boolean answerRight){
+		if(answerRight){
+			questionLabel.setText("Richtig!");
+			answer1Label.setText("");
+			answer2Label.setText("");
+			answer3Label.setText("");
+			answer4Label.setText("");
+			this.repaint();
+		}
+		else{
+			questionLabel.setText("Falsch!");
+		}
+		
+		new Thread(){
+			 public void run() {
+				try {
+					sleep(2000);
+					board.continueAfterQuestEvent();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 }
+		}.start();
 	}
 
 }

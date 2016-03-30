@@ -382,7 +382,7 @@ public class Board extends JPanel {
 		life3.setBounds(95, 3, 40, 35);
 		add(life3);
 		
-		questPanel = new QuestionGUI();
+		questPanel = new QuestionGUI(this);
 	}
 	
 	public void newGame(){		

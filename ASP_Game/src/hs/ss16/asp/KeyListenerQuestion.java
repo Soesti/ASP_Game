@@ -9,11 +9,13 @@ public class KeyListenerQuestion implements KeyListener {
 	Board board;
 	List<Answer> answers;
 	boolean getAnswer = false;
+	QuestionGUI gui;
 	
 	
-	public KeyListenerQuestion(List<Answer> answers, Board board) {
+	public KeyListenerQuestion(List<Answer> answers, Board board, QuestionGUI gui) {
 		this.board = board;
 		this.answers = answers;
+		this.gui = gui;
 	}
 	
 	@Override
@@ -35,26 +37,38 @@ public class KeyListenerQuestion implements KeyListener {
 			if(e.getKeyChar() == '1'){
 				if(answers.get(0).isRight()){
 					board.increaseNumberOfLifeSeconds(time);
+					gui.setAnswer(true);
 				}
-				board.continueAfterQuestEvent();
+				else{
+					gui.setAnswer(false);
+				}
 			}
 			else if(e.getKeyChar() == '2'){
 				if(answers.get(1).isRight()){
 					board.increaseNumberOfLifeSeconds(time);
+					gui.setAnswer(true);
 				}
-				board.continueAfterQuestEvent();
+				else{
+					gui.setAnswer(false);
+				}
 			}
 			else if(e.getKeyChar() == '3'){
 				if(answers.get(2).isRight()){
 					board.increaseNumberOfLifeSeconds(time);
+					gui.setAnswer(true);
 				}
-				board.continueAfterQuestEvent();
+				else{
+					gui.setAnswer(false);
+				}
 			}
 			else if(e.getKeyChar() == '4'){
 				if(answers.get(3).isRight()){
 					board.increaseNumberOfLifeSeconds(time);
+					gui.setAnswer(true);
 				}
-				board.continueAfterQuestEvent();
+				else{
+					gui.setAnswer(false);
+				}
 			}
 		}
 	}
